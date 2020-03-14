@@ -26,6 +26,8 @@ void UEnergyComponent::BeginPlay()
 void UEnergyComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	RemoveEnergy(EnergyWaste);
 }
 
 void UEnergyComponent::AddEnergy(float Energy) 

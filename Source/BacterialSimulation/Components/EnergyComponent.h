@@ -39,4 +39,7 @@ public:
 	FEnergyDelegate OnEnergyStarvingStart;
 
 	FEnergyDelegate OnEnergyStarvingEnd;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Energy component")
+	float EnergyWaste;
 };
