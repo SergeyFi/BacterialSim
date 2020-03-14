@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "HealthComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDeathDelegate);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BACTERIALSIMULATION_API UHealthComponent : public UActorComponent
@@ -28,4 +29,10 @@ protected:
 
 public:
 
+	UFUNCTION(BlueprintCallable)
+	void RemoveHealth(float Damage);
+
+	UPROPERTY(BlueprintAssignable)
+	FDeathDelegate OnDeath;
+	
 };

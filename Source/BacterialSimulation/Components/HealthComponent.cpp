@@ -2,6 +2,7 @@
 
 
 #include "HealthComponent.h"
+#include "GameFramework/Actor.h"
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
@@ -14,6 +15,15 @@ UHealthComponent::UHealthComponent()
 void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
+void UHealthComponent::RemoveHealth(float Damage) 
+{
+	HealthCurrent -= Damage;
+
+	if (HealthCurrent <= 0)
+	{
+		HealthCurrent = 0.0f;
+		OnDeath.Broadcast();
+	}
+}
