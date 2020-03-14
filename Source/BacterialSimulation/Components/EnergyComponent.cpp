@@ -8,6 +8,10 @@ UEnergyComponent::UEnergyComponent()
 {
 
 	PrimaryComponentTick.bCanEverTick = true;
+	EnergyMax = 100.0f;
+	EnergyCurrent = EnergyMax;
+
+	SetComponentTickInterval(1.0f);
 }
 
 
@@ -22,5 +26,31 @@ void UEnergyComponent::BeginPlay()
 void UEnergyComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
+
+void UEnergyComponent::AddEnergy(float Energy) 
+{
+	EnergyCurrent += Energy;
+
+	if (EnergyCurrent > 0.0f)
+	{
+		OnEnergyStarvingEnd.Broadcast();
+	}
+
+	if (EnergyCurrent > EnergyMax) 
+	{
+		EnergyCurrent = EnergyMax;
+	}
+}
+
+void UEnergyComponent::RemoveEnergy(float EnergyDamage) 
+{
+	EnergyCurrent -= EnergyDamage;
+
+	if (EnergyCurrent >= 0.0f)
+	{
+		EnergyCurrent = 0.0f;
+		OnEnergyStarvingStart.Broadcast();
+	}
 }
 
