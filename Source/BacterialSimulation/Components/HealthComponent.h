@@ -27,6 +27,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
 	float HealthMax;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
+	float StarvingDamage;
+
+	void Starving();
+
 public:
 
 	UFUNCTION(BlueprintCallable)
@@ -34,5 +39,14 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FDeathDelegate OnDeath;
+
+	void StartStarving();
+
+	void StopStarving();
+
+	FTimerHandle TimerStarving;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
+	class UEnergyComponent* EnergyComponent;
 	
 };
