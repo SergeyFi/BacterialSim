@@ -59,7 +59,7 @@ void UEnergyComponent::RemoveEnergy(float EnergyDamage)
 {
 	EnergyCurrent -= EnergyDamage;
 
-	if (EnergyCurrent >= 0.0f)
+	if (EnergyCurrent <= 0.0f)
 	{
 		EnergyCurrent = 0.0f;
 		OnEnergyStarvingStart.Broadcast();

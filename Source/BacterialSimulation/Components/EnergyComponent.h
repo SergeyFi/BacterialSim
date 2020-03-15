@@ -43,7 +43,9 @@ public:
 
 	void RemoveEnergyWaste(float Energy);
 
+	UPROPERTY()
 	FEnergyDelegate OnEnergyStarvingStart;
 
+	UPROPERTY()
 	FEnergyDelegate OnEnergyStarvingEnd;
 };
