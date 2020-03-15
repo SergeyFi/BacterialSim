@@ -27,19 +27,23 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Energy component")
 	float EnergyMax;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Energy component")
+	float EnergyWaste;
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintCallable)
 	void RemoveEnergy(float EnergyDamage);
-
+	
 	void AddEnergy(float Energy);
+
+	void AddEnergyWaste(float Energy);
+
+	void RemoveEnergyWaste(float Energy);
 
 	FEnergyDelegate OnEnergyStarvingStart;
 
 	FEnergyDelegate OnEnergyStarvingEnd;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Energy component")
-	float EnergyWaste;
 };

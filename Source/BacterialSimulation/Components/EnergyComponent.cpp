@@ -45,6 +45,16 @@ void UEnergyComponent::AddEnergy(float Energy)
 	}
 }
 
+void UEnergyComponent::AddEnergyWaste(float Energy) 
+{
+	EnergyWaste += Energy;
+}
+
+void UEnergyComponent::RemoveEnergyWaste(float Energy) 
+{
+	EnergyWaste -= Energy;
+}
+
 void UEnergyComponent::RemoveEnergy(float EnergyDamage) 
 {
 	EnergyCurrent -= EnergyDamage;
