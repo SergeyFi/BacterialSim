@@ -30,6 +30,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
 	float StarvingDamage;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Health component")
+	bool bIsStarving;
+
 	void Starving();
 
 public:
@@ -40,8 +43,10 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FDeathDelegate OnDeath;
 
+	UFUNCTION()
 	void StartStarving();
 
+	UFUNCTION()
 	void StopStarving();
 
 	FTimerHandle TimerStarving;

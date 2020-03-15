@@ -14,7 +14,15 @@ UHealthComponent::UHealthComponent()
 {
 	PrimaryComponentTick.bCanEverTick = false;
 
+	HealthMax = 100.0f;
 	HealthCurrent = HealthMax;
+}
+
+
+// Called when the game starts
+void UHealthComponent::BeginPlay()
+{
+	Super::BeginPlay();
 
 	if (EnergyComponent)
 	{
@@ -24,18 +32,11 @@ UHealthComponent::UHealthComponent()
 }
 
 
-// Called when the game starts
-void UHealthComponent::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-
 void UHealthComponent::RemoveHealth(float Damage) 
 {
 	HealthCurrent -= Damage;
 
-	if (HealthCurrent <= 0)
+	if (HealthCurrent <= 0.0f)
 	{
 		HealthCurrent = 0.0f;
 		OnDeath.Broadcast();
@@ -49,9 +50,14 @@ void UHealthComponent::Starving()
 
 void UHealthComponent::StartStarving() 
 {
-	if (GetWorld())
+	if (!bIsStarving)
 	{
+		if (GetWorld())
+		{
 		GetWorld()->GetTimerManager().SetTimer(TimerStarving, this, &UHealthComponent::Starving, 1.0f, true);
+
+		bIsStarving = true;
+		}
 	}
 }
 
@@ -60,5 +66,7 @@ void UHealthComponent::StopStarving()
 	if (GetWorld())
 	{
 		GetWorld()->GetTimerManager().ClearTimer(TimerStarving);
+		
+		bIsStarving = false;
 	}
 }
