@@ -7,7 +7,7 @@
 #include "Gene.generated.h"
 
 
-UCLASS()
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent, IsBlueprintBase="true"))
 class BACTERIALSIMULATION_API UGene : public UObject
 {
 	GENERATED_BODY()
