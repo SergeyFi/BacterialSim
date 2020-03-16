@@ -16,6 +16,7 @@ ABacterialCell::ABacterialCell()
 	PrimaryActorTick.bCanEverTick = false;
 
 	PaperSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSprite"));
+	PaperSprite->SetWorldScale3D(FVector(0.1f));
 	RootComponent = PaperSprite;
 
 	EnergyComponent = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
@@ -31,4 +32,14 @@ void ABacterialCell::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ABacterialCell::SetCellVolume(float Volume) 
+{
+	PaperSprite->SetWorldScale3D(FVector(Volume/10.0f));
+}
+
+float ABacterialCell::GetCellVolume() 
+{
+	return PaperSprite->GetRelativeScale3D().X*10.0f;
 }
