@@ -3,3 +3,16 @@
 
 #include "Gene.h"
 
+void UGene::Mutate() 
+{
+}
+
+int32 UGene::GetGeneLength() 
+{
+    return GeneLength;
+}
+
+void UGene::SetCellOwner(class AActor* Cell) 
+{
+    CellOwner = Cell;
+}

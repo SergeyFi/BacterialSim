@@ -2,11 +2,14 @@
 
 
 #include "GenomeComponent.h"
+#include "BacterialSimulation/Objects/Genes/Gene.h"
 
 // Sets default values for this component's properties
 UGenomeComponent::UGenomeComponent()
 {
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
+
+	MutationPer = 10;
 }
 
 
@@ -17,11 +20,71 @@ void UGenomeComponent::BeginPlay()
 
 }
 
-
-// Called every frame
-void UGenomeComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UGenomeComponent::AddNewRandomGene() 
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	auto GeneRandomClass = GeneClasses[FMath::RandRange(0, GeneClasses.Max()-1)];
+
+	Genome.Add(DuplicateObject<UGene>(GeneRandomClass->GetDefaultObject<UGene>(), this));
+	Genome.Last()->SetCellOwner(GetOwner());
+}
+
+class UGene* UGenomeComponent::FindGeneInGenome(int32 Length) 
+{
+	int32 CurrentLength = 0;
+
+	for (auto Gene : Genome)
+	{
+		if (Gene)
+		{
+			CurrentLength += Gene->GetGeneLength();
+
+			if (CurrentLength >= Length)
+			{
+				return Gene;
+			}
+		}
+	}
+
+	return nullptr;
+}
+
+int32 UGenomeComponent::GetGenomeLength() 
+{
+	uint32 GenomeLength = 0;
+
+	for (auto Gene : Genome)
+	{
+		if (Gene)
+		{
+			GenomeLength += Gene->GetGeneLength();
+		}
+	}
+
+	return GenomeLength;
+}
+
+void UGenomeComponent::Mutate() 
+{
+	float NewGeneChance = FMath::RandRange(0.0f, 1.0f);
+
+	if (NewGeneChance <= AddNewGeneChance)
+	{
+		AddNewRandomGene();
+	}
+
+	int32 GenomeLength =  GetGenomeLength();
+
+	for (int32 i = 0; i < GenomeLength / MutationPer; i++ )
+	{
+		int32 RandomLength = FMath::RandRange(0,GenomeLength);
+		
+		UGene* Gene = FindGeneInGenome(RandomLength);
+
+		if (Gene)
+		{
+			Gene->Mutate();
+		}
+	}
 
 }
 

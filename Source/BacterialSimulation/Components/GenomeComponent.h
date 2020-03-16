@@ -20,9 +20,26 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Genome component")
+	int32 MutationPer;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Genome component")
+	float AddNewGeneChance;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Genome component")
+	TArray<class UGene*> Genome;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Genome component")
+	TArray<TSubclassOf<class UGene>> GeneClasses;
+
+	void AddNewRandomGene();
+
+	class UGene* FindGeneInGenome(int32 Length);
+
+public:
+
+	int32 GetGenomeLength();
+
+	void Mutate();
 		
 };

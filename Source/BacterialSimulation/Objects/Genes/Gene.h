@@ -11,5 +11,21 @@ UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent, IsBlueprintBase="
 class BACTERIALSIMULATION_API UGene : public UObject
 {
 	GENERATED_BODY()
+
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	int32 GeneLength;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gene")
+	class AActor* CellOwner;
+
+public:
+
+	void Mutate();
+
+	int32 GetGeneLength();
+
+	void SetCellOwner(class AActor* Cell);
 	
 };
