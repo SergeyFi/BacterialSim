@@ -21,7 +21,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Genome component")
-	int32 MutationPer;
+	int32 MutationPerNLength;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Genome component")
 	float AddNewGeneChance;
@@ -32,9 +32,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Genome component")
 	TArray<TSubclassOf<class UGene>> GeneClasses;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Genome component")
+	TArray<TSubclassOf<class UGene>> BaseGeneClasses;
+
 	void AddNewRandomGene();
 
 	class UGene* FindGeneInGenome(int32 Length);
+
+	void AddBaseGenes();
 
 public:
 

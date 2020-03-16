@@ -9,7 +9,7 @@ UGenomeComponent::UGenomeComponent()
 {
 	PrimaryComponentTick.bCanEverTick = false;
 
-	MutationPer = 10;
+	MutationPerNLength = 10;
 }
 
 
@@ -18,14 +18,18 @@ void UGenomeComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	AddBaseGenes();
 }
 
 void UGenomeComponent::AddNewRandomGene() 
 {
 	auto GeneRandomClass = GeneClasses[FMath::RandRange(0, GeneClasses.Max()-1)];
 
-	Genome.Add(DuplicateObject<UGene>(GeneRandomClass->GetDefaultObject<UGene>(), this));
-	Genome.Last()->SetCellOwner(GetOwner());
+	if (GeneRandomClass)
+	{
+		Genome.Add(DuplicateObject<UGene>(GeneRandomClass->GetDefaultObject<UGene>(), this));
+		Genome.Last()->SetCellOwner(GetOwner());
+	}
 }
 
 class UGene* UGenomeComponent::FindGeneInGenome(int32 Length) 
@@ -46,6 +50,18 @@ class UGene* UGenomeComponent::FindGeneInGenome(int32 Length)
 	}
 
 	return nullptr;
+}
+
+void UGenomeComponent::AddBaseGenes() 
+{
+	for (auto GeneClass : BaseGeneClasses)
+	{
+		if (GeneClass)
+		{
+			Genome.Add(DuplicateObject<UGene>(GeneClass->GetDefaultObject<UGene>(), this));
+			Genome.Last()->SetCellOwner(GetOwner());
+		}
+	}
 }
 
 int32 UGenomeComponent::GetGenomeLength() 
@@ -74,7 +90,7 @@ void UGenomeComponent::Mutate()
 
 	int32 GenomeLength =  GetGenomeLength();
 
-	for (int32 i = 0; i < GenomeLength / MutationPer; i++ )
+	for (int32 i = 0; i < GenomeLength / MutationPerNLength; i++ )
 	{
 		int32 RandomLength = FMath::RandRange(0,GenomeLength);
 		
