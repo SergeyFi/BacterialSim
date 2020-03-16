@@ -28,8 +28,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	class UHealthComponent* HealthComponent;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	class UGenomeComponent* GenomeComponent;
 };

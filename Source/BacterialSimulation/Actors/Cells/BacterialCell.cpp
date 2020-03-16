@@ -7,12 +7,13 @@
 
 #include "BacterialSimulation/Components/EnergyComponent.h"
 #include "BacterialSimulation/Components/HealthComponent.h"
+#include "BacterialSimulation/Components/GenomeComponent.h"
 
 // Sets default values
 ABacterialCell::ABacterialCell()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	PaperSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSprite"));
 	RootComponent = PaperSprite;
@@ -21,6 +22,8 @@ ABacterialCell::ABacterialCell()
 
 	HealthComponent = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	HealthComponent->EnergyComponent = EnergyComponent;
+
+	GenomeComponent = CreateDefaultSubobject<UGenomeComponent>(TEXT("Genome"));
 }
 
 // Called when the game starts or when spawned
@@ -29,11 +32,3 @@ void ABacterialCell::BeginPlay()
 	Super::BeginPlay();
 	
 }
-
-// Called every frame
-void ABacterialCell::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
