@@ -16,6 +16,8 @@ UHealthComponent::UHealthComponent()
 
 	HealthMax = 100.0f;
 	HealthCurrent = HealthMax;
+	HealthRegenStrength = 1.0f;
+	HealthRegenEnergyConsume = 1.0f;
 }
 
 
@@ -46,6 +48,51 @@ void UHealthComponent::RemoveHealth(float Damage)
 void UHealthComponent::Starving() 
 {
 	RemoveHealth(StarvingDamage);
+}
+
+void UHealthComponent::HealthRegeneration() 
+{
+	if (!bIsStarving || HealthCurrent < HealthMax)
+	{
+		AddHealth(HealthRegenStrength);
+	
+		if (EnergyComponent)
+		{
+			EnergyComponent->RemoveEnergy(HealthRegenEnergyConsume);
+		}
+	}
+	else
+	{
+		StopHealthRegeneration();
+	}
+}
+
+void UHealthComponent::StartHealthRegeneration() 
+{
+	if (GetWorld())
+	{
+		GetWorld()->GetTimerManager().SetTimer(HealthRegenerationTimer, this, &UHealthComponent::HealthRegeneration, 1.0f, true);
+	}
+}
+
+void UHealthComponent::StopHealthRegeneration() 
+{
+	UWorld* World = GetWorld();
+	
+	if (World)
+	{
+		GetWorld()->GetTimerManager().ClearTimer(HealthRegenerationTimer);
+	}
+}
+
+void UHealthComponent::AddHealth(float Heal) 
+{
+	HealthCurrent += Heal;
+
+	if (HealthCurrent > HealthMax)
+	{
+		HealthCurrent = HealthMax;
+	}
 }
 
 void UHealthComponent::StartStarving() 

@@ -28,6 +28,12 @@ protected:
 	float HealthMax;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
+	float HealthRegenStrength;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
+	float HealthRegenEnergyConsume;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
 	float StarvingDamage;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Health component")
@@ -35,10 +41,22 @@ protected:
 
 	void Starving();
 
+	void HealthRegeneration();
+
+	void StartHealthRegeneration();
+
+	void StopHealthRegeneration();
+
+	FTimerHandle HealthRegenerationTimer;
+
+	FTimerHandle TimerStarving;
+
 public:
 
 	UFUNCTION(BlueprintCallable)
 	void RemoveHealth(float Damage);
+
+	void AddHealth(float Heal);
 
 	UPROPERTY(BlueprintAssignable)
 	FDeathDelegate OnDeath;
@@ -48,8 +66,6 @@ public:
 
 	UFUNCTION()
 	void StopStarving();
-
-	FTimerHandle TimerStarving;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
 	class UEnergyComponent* EnergyComponent;
