@@ -37,19 +37,11 @@ public:
 
 	float GetCellVolume();
 
-	UFUNCTION(BlueprintNativeEvent)
-	class UHealthComponent* GetHealthComponent();
-	virtual class UHealthComponent* GetHealthComponent_Implementation() override;
+	virtual class UHealthComponent* GetHealthComponent() override;
 
-	UFUNCTION(BlueprintNativeEvent)
-	class UEnergyComponent* GetEnergyComponent();
-	virtual class UEnergyComponent* GetEnergyComponent_Implementation() override;
+	virtual class UEnergyComponent* GetEnergyComponent() override;
 
-	UFUNCTION(BlueprintNativeEvent)
-	void SetVolume(float Volume);
-	virtual void SetVolume_Implementation(float Volume) override;
+	virtual void SetVolume(float Volume) override;
 
-	UFUNCTION(BlueprintNativeEvent)
-	float GetVolume();
-	virtual float GetVolume_Implementation() override;
+	virtual float GetVolume() override;
 };
