@@ -3,3 +3,19 @@
 
 #include "Environment.h"
 
+UEnvironment::UEnvironment() 
+{
+    
+}
+
+UEnvironment* UEnvironment::EnvironmentInstance = nullptr;
+
+UEnvironment* UEnvironment::GetEnvironment() 
+{
+    if (EnvironmentInstance == nullptr)
+    {
+        EnvironmentInstance = NewObject<UEnvironment>();
+    }
+
+    return EnvironmentInstance;
+}

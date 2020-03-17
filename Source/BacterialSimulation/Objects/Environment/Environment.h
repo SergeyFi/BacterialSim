@@ -11,5 +11,15 @@ UCLASS()
 class BACTERIALSIMULATION_API UEnvironment : public UObject
 {
 	GENERATED_BODY()
+
+private:
+
+	UEnvironment();
+	static UEnvironment* EnvironmentInstance;
+
+public:
+
+	static UEnvironment* GetEnvironment();
+
 	
 };
