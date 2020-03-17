@@ -22,7 +22,7 @@ protected:
 
 public:
 
-	void Mutate();
+	virtual void Mutate();
 
 	int32 GetGeneLength();
 
