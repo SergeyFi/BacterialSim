@@ -43,3 +43,23 @@ float ABacterialCell::GetCellVolume()
 {
 	return PaperSprite->GetRelativeScale3D().X*10.0f;
 }
+
+class UHealthComponent* ABacterialCell::GetHealthComponent_Implementation() 
+{
+	return HealthComponent;
+}
+
+class UEnergyComponent* ABacterialCell::GetEnergyComponent_Implementation() 
+{
+	return EnergyComponent;
+}
+
+void ABacterialCell::SetVolume_Implementation(float Volume) 
+{
+	SetCellVolume(Volume);
+}
+
+float ABacterialCell::GetVolume_Implementation() 
+{
+	return GetCellVolume();
+}

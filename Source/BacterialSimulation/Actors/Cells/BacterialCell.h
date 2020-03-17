@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "BacterialSimulation/Interfaces/GeneInterface.h"
 #include "BacterialCell.generated.h"
 
 UCLASS()
-class BACTERIALSIMULATION_API ABacterialCell : public AActor
+class BACTERIALSIMULATION_API ABacterialCell : public AActor, public IGeneInterface
 {
 	GENERATED_BODY()
 	
@@ -35,4 +36,20 @@ public:
 	void SetCellVolume(float Volume);
 
 	float GetCellVolume();
+
+	UFUNCTION(BlueprintNativeEvent)
+	class UHealthComponent* GetHealthComponent();
+	virtual class UHealthComponent* GetHealthComponent_Implementation() override;
+
+	UFUNCTION(BlueprintNativeEvent)
+	class UEnergyComponent* GetEnergyComponent();
+	virtual class UEnergyComponent* GetEnergyComponent_Implementation() override;
+
+	UFUNCTION(BlueprintNativeEvent)
+	void SetVolume(float Volume);
+	virtual void SetVolume_Implementation(float Volume) override;
+
+	UFUNCTION(BlueprintNativeEvent)
+	float GetVolume();
+	virtual float GetVolume_Implementation() override;
 };
