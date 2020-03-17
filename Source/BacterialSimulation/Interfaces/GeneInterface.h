@@ -20,9 +20,18 @@ class BACTERIALSIMULATION_API IGeneInterface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
+	UFUNCTION(BlueprintNativeEvent)
 	class UHealthComponent* GetHealthComponent();
 
+	UFUNCTION(BlueprintNativeEvent)
 	class UEnergyComponent* GetEnergyComponent();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void SetVolume(float Volume);
+
+	UFUNCTION(BlueprintNativeEvent)
+	float GetVolume();
+
 
 
 };
