@@ -18,7 +18,7 @@ protected:
 	int32 GeneLength;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gene")
-	class AActor* CellOwner;
+	class ABacterialCell* CellOwner;
 
 public:
 

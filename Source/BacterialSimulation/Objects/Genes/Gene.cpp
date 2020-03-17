@@ -3,6 +3,8 @@
 
 #include "Gene.h"
 
+#include "BacterialSimulation/Actors/Cells/BacterialCell.h"
+
 void UGene::Mutate() 
 {
 }
@@ -14,5 +16,5 @@ int32 UGene::GetGeneLength()
 
 void UGene::SetCellOwner(class AActor* Cell) 
 {
-    CellOwner = Cell;
+    CellOwner = Cast<ABacterialCell>(Cell);
 }
