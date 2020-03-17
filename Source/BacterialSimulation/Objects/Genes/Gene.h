@@ -17,8 +17,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	int32 GeneLength;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gene")
-	class ABacterialCell* CellOwner;
+	class IGeneInterface* GeneInterface;
 
 public:
 
