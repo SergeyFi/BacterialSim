@@ -43,6 +43,8 @@ public:
 
 	void RemoveEnergyWaste(float Energy);
 
+	float GetEnergyCurrent();
+
 	UPROPERTY()
 	FEnergyDelegate OnEnergyStarvingStart;
 

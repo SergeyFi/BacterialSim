@@ -34,6 +34,9 @@ protected:
 	float HealthRegenEnergyConsume;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
+	float MinimumEnergyToRegen;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
 	float StarvingDamage;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Health component")
