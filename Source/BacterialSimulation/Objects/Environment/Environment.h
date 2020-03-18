@@ -28,5 +28,7 @@ public:
 
 	void AddActorToEnvironment(class AActor* Actor);
 
+	void RemoveActorFromEnvironment(class AActor* Actor);
+
 	
 };

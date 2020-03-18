@@ -37,6 +37,11 @@ void ABacterialCell::BeginPlay()
 	GetEnvironment()->AddActorToEnvironment(this);
 }
 
+void ABacterialCell::Destroyed() 
+{
+	GetEnvironment()->RemoveActorFromEnvironment(this);
+}
+
 void ABacterialCell::SetCellVolume(float Volume) 
 {
 	PaperSprite->SetWorldScale3D(FVector(Volume/10.0f));

@@ -26,3 +26,8 @@ void UEnvironment::AddActorToEnvironment(AActor* Actor)
     EnvironmentActors.Add(Actor);
 }
 
+void UEnvironment::RemoveActorFromEnvironment(class AActor* Actor) 
+{
+    EnvironmentActors.RemoveSingle(Actor);
+}
+
