@@ -17,9 +17,16 @@ private:
 	UEnvironment();
 	static UEnvironment* EnvironmentInstance;
 
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
+	TArray<class AActor*> EnvironmentActors;
+
 public:
 
 	static UEnvironment* GetEnvironment();
+
+	void AddActorToEnvironment(class AActor* Actor);
 
 	
 };

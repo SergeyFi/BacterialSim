@@ -2,6 +2,7 @@
 
 
 #include "Environment.h"
+#include "GameFramework/Actor.h"
 
 UEnvironment::UEnvironment() 
 {
@@ -19,3 +20,9 @@ UEnvironment* UEnvironment::GetEnvironment()
 
     return EnvironmentInstance;
 }
+
+void UEnvironment::AddActorToEnvironment(AActor* Actor) 
+{
+    EnvironmentActors.Add(Actor);
+}
+
