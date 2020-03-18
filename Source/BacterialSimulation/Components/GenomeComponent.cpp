@@ -28,7 +28,7 @@ void UGenomeComponent::AddNewRandomGene()
 	if (GeneRandomClass)
 	{
 		Genome.Add(DuplicateObject<UGene>(GeneRandomClass->GetDefaultObject<UGene>(), this));
-		Genome.Last()->SetCellOwner(GetOwner());
+		Genome.Last()->Init(GetOwner());
 	}
 }
 
@@ -59,7 +59,7 @@ void UGenomeComponent::AddBaseGenes()
 		if (GeneClass)
 		{
 			Genome.Add(DuplicateObject<UGene>(GeneClass->GetDefaultObject<UGene>(), this));
-			Genome.Last()->SetCellOwner(GetOwner());
+			Genome.Last()->Init(GetOwner());
 		}
 	}
 }

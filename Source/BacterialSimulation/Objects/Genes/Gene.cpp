@@ -1,9 +1,10 @@
 // Copyright 2020 Sergey Firsov. All Rights Reserved.
 
+// This class with initializer ,pls call init after creation !!
 
 #include "Gene.h"
 
-#include "BacterialSimulation/Interfaces/GeneInterface.h"
+#include "BacterialSimulation/Interfaces/ComponentInterface.h"
 
 void UGene::Mutate() 
 {
@@ -14,7 +15,7 @@ int32 UGene::GetGeneLength()
     return GeneLength;
 }
 
-void UGene::SetCellOwner(class AActor* Cell) 
+void UGene::Init(class AActor* Owner) 
 {
-    GeneInterface = Cast<IGeneInterface>(Cell);
+    Components = Cast<IComponentInterface>(Owner);
 }

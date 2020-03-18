@@ -1,5 +1,7 @@
 // Copyright 2020 Sergey Firsov. All Rights Reserved.
 
+// This class with initializer ,pls call init after creation !!
+
 #pragma once
 
 #include "CoreMinimal.h"
@@ -17,7 +19,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	int32 GeneLength;
 
-	class IGeneInterface* GeneInterface;
+	class IComponentInterface* Components;
 
 public:
 
@@ -25,6 +27,6 @@ public:
 
 	int32 GetGeneLength();
 
-	void SetCellOwner(class AActor* Cell);
+	void Init(class AActor* Owner);
 	
 };
