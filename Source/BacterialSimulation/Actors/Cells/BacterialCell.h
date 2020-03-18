@@ -5,12 +5,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 
-#include "BacterialSimulation/Interfaces/GeneInterface.h"
+#include "BacterialSimulation/Interfaces/ComponentInterface.h"
 #include "BacterialSimulation/Interfaces/EnvironmentInterface.h"
 #include "BacterialCell.generated.h"
 
 UCLASS()
-class BACTERIALSIMULATION_API ABacterialCell : public AActor, public IGeneInterface, public IEnvironmentInterface
+class BACTERIALSIMULATION_API ABacterialCell : public AActor, public IComponentInterface, public IEnvironmentInterface
 {
 	GENERATED_BODY()
 	
@@ -36,6 +36,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	class UGenomeComponent* GenomeComponent;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	class UEnvironmentEffectComponent* EnvironmentEffectComponent;
+
 public:
 	void SetCellVolume(float Volume);
 
@@ -48,4 +51,6 @@ public:
 	virtual void SetVolume(float Volume) override;
 
 	virtual float GetVolume() override;
+
+	virtual void ApplyEnvironmentEffect(class UEnvironmentEffect* EnvironmentEffect) override;
 };
