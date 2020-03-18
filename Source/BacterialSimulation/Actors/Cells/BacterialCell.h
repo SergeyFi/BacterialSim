@@ -4,11 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+
 #include "BacterialSimulation/Interfaces/GeneInterface.h"
+#include "BacterialSimulation/Interfaces/EnvironmentInterface.h"
 #include "BacterialCell.generated.h"
 
 UCLASS()
-class BACTERIALSIMULATION_API ABacterialCell : public AActor, public IGeneInterface
+class BACTERIALSIMULATION_API ABacterialCell : public AActor, public IGeneInterface, public IEnvironmentInterface
 {
 	GENERATED_BODY()
 	
