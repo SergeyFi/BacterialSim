@@ -9,6 +9,8 @@
 #include "BacterialSimulation/Components/HealthComponent.h"
 #include "BacterialSimulation/Components/GenomeComponent.h"
 
+#include "BacterialSimulation/Objects/Environment/Environment.h"
+
 // Sets default values
 ABacterialCell::ABacterialCell()
 {
@@ -31,7 +33,8 @@ ABacterialCell::ABacterialCell()
 void ABacterialCell::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	GetEnvironment()->AddActorToEnvironment(this);
 }
 
 void ABacterialCell::SetCellVolume(float Volume) 
