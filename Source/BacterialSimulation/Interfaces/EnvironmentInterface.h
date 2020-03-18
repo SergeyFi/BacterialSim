@@ -22,4 +22,6 @@ class BACTERIALSIMULATION_API IEnvironmentInterface
 protected:
 
 	virtual class UEnvironment* GetEnvironment();
+
+	virtual void ApplyEnvironmentEffect(class UEnvironmentEffect* EnvironmentEffect) = 0;
 };
