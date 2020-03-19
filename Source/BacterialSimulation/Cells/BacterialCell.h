@@ -35,6 +35,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	class UGenomeComponent* GenomeComponent;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	class USizeComponent* SizeComponent;
+
 public:
 	void SetCellVolume(float Volume);
 

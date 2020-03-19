@@ -8,6 +8,7 @@
 #include "BacterialSimulation/Components/EnergyComponent.h"
 #include "BacterialSimulation/Components/HealthComponent.h"
 #include "BacterialSimulation/Components/GenomeComponent.h"
+#include "BacterialSimulation/Components/SizeComponent.h"
 
 #include "BacterialSimulation/Environment/Environment.h"
 
@@ -29,6 +30,8 @@ ABacterialCell::ABacterialCell()
 	HealthComponent->EnergyComponent = EnergyComponent;
 
 	GenomeComponent = CreateDefaultSubobject<UGenomeComponent>(TEXT("Genome"));
+
+	SizeComponent = CreateDefaultSubobject<USizeComponent>(TEXT("SizeComponent"));
 }
 
 // Called when the game starts or when spawned

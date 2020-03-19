@@ -18,5 +18,12 @@ public:
 
 protected:
 	// Called when the game starts
-	virtual void BeginPlay() override;		
+	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Size component")
+	float InitialSize;
+
+	void SetOwnerSize(float Size);
+
+	float GetOwnerSize();
 };
