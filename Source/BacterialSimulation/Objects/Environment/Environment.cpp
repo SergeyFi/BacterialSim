@@ -31,3 +31,8 @@ void UEnvironment::RemoveActorFromEnvironment(class AActor* Actor)
     EnvironmentActors.RemoveSingle(Actor);
 }
 
+void UEnvironment::DestroyEnvironment() 
+{
+    EnvironmentInstance = nullptr;
+}
+

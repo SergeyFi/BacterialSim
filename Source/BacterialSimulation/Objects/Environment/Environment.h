@@ -30,5 +30,6 @@ public:
 
 	void RemoveActorFromEnvironment(class AActor* Actor);
 
-	
+	static void DestroyEnvironment();
+
 };
