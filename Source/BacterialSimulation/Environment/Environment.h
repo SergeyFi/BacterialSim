@@ -7,7 +7,7 @@
 #include "Environment.generated.h"
 
 
-UCLASS()
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent, IsBlueprintBase="true"))
 class BACTERIALSIMULATION_API UEnvironment : public UObject
 {
 	GENERATED_BODY()
@@ -22,6 +22,12 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
 	TArray<class AActor*> EnvironmentActors;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
+	TArray<class UEnvironmentEffect*> EnvironmentEffects;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
+	TArray<TSubclassOf<class UEnvironmentEffect>> EnvironmentEffectClasses;
+
 public:
 
 	static UEnvironment* GetEnvironment();
@@ -31,5 +37,7 @@ public:
 	void RemoveActorFromEnvironment(class AActor* Actor);
 
 	static void DestroyEnvironment();
+
+	void UpdateEnvironmentEffects(TSubclassOf<class UEnvironmentEffect> Effect = nullptr);
 
 };

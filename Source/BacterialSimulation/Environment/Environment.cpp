@@ -4,10 +4,34 @@
 #include "Environment.h"
 #include "GameFramework/Actor.h"
 
+#include "BacterialSimulation/Environment/Effects/EnvironmentEffect.h"
+
 UEnvironment::UEnvironment() 
 {
-    
+    UpdateEnvironmentEffects();
 }
+
+void UEnvironment::UpdateEnvironmentEffects(TSubclassOf<UEnvironmentEffect> Effect) 
+{
+    if (Effect)
+    {
+        EnvironmentEffectClasses.Add(Effect);
+    }
+
+    EnvironmentEffects.Empty();
+
+    for (auto EffectClass : EnvironmentEffectClasses)
+    {
+        if (EffectClass)
+        {
+            UEnvironmentEffect* Effect = DuplicateObject<UEnvironmentEffect>(EffectClass->GetDefaultObject<UEnvironmentEffect>(), this);
+
+            EnvironmentEffects.Add(Effect);
+        }
+    }
+}
+
+
 
 UEnvironment* UEnvironment::EnvironmentInstance = nullptr;
 
