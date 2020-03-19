@@ -28,6 +28,13 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
 	TArray<TSubclassOf<class UEnvironmentEffect>> EnvironmentEffectClasses;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Environment")
+	float ApplyEffectPeriod;
+
+	FTimerHandle TimerEffect;
+
+	void ApplyEffectsToActors();
+
 public:
 
 	static UEnvironment* GetEnvironment();
@@ -39,5 +46,9 @@ public:
 	static void DestroyEnvironment();
 
 	void UpdateEnvironmentEffects(TSubclassOf<class UEnvironmentEffect> Effect = nullptr);
+
+	void StartApplyEffects();
+
+	void StopApplyEffects();
 
 };
