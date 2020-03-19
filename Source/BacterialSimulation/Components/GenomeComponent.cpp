@@ -2,7 +2,7 @@
 
 
 #include "GenomeComponent.h"
-#include "BacterialSimulation/Objects/Genes/Gene.h"
+#include "BacterialSimulation/Genes/Gene.h"
 
 // Sets default values for this component's properties
 UGenomeComponent::UGenomeComponent()
