@@ -2,26 +2,37 @@
 
 
 #include "Environment.h"
+#include "GameFramework/Actor.h"
 
-// Sets default values
-AEnvironment::AEnvironment()
+UEnvironment::UEnvironment() 
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+    
 }
 
-// Called when the game starts or when spawned
-void AEnvironment::BeginPlay()
+UEnvironment* UEnvironment::EnvironmentInstance = nullptr;
+
+UEnvironment* UEnvironment::GetEnvironment() 
 {
-	Super::BeginPlay();
-	
+    if (EnvironmentInstance == nullptr)
+    {
+        EnvironmentInstance = NewObject<UEnvironment>();
+    }
+
+    return EnvironmentInstance;
 }
 
-// Called every frame
-void AEnvironment::Tick(float DeltaTime)
+void UEnvironment::AddActorToEnvironment(AActor* Actor) 
 {
-	Super::Tick(DeltaTime);
+    EnvironmentActors.Add(Actor);
+}
 
+void UEnvironment::RemoveActorFromEnvironment(class AActor* Actor) 
+{
+    EnvironmentActors.RemoveSingle(Actor);
+}
+
+void UEnvironment::DestroyEnvironment() 
+{
+    EnvironmentInstance = nullptr;
 }
 

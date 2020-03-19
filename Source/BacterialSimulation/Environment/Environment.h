@@ -3,24 +3,33 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "UObject/NoExportTypes.h"
 #include "Environment.generated.h"
 
+
 UCLASS()
-class BACTERIALSIMULATION_API AEnvironment : public AActor
+class BACTERIALSIMULATION_API UEnvironment : public UObject
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
-	AEnvironment();
+
+private:
+
+	UEnvironment();
+	static UEnvironment* EnvironmentInstance;
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
+	TArray<class AActor*> EnvironmentActors;
+
+public:
+
+	static UEnvironment* GetEnvironment();
+
+	void AddActorToEnvironment(class AActor* Actor);
+
+	void RemoveActorFromEnvironment(class AActor* Actor);
+
+	static void DestroyEnvironment();
 
 };

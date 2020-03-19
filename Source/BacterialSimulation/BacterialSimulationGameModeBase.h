@@ -6,12 +6,15 @@
 #include "GameFramework/GameModeBase.h"
 #include "BacterialSimulationGameModeBase.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class BACTERIALSIMULATION_API ABacterialSimulationGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+
+protected:
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason);
 	
 };
