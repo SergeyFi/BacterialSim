@@ -27,7 +27,5 @@ public:
 
 	virtual class UGenomeComponent* GetGenomeComponent() = 0;
 
-	virtual void SetVolume(float Volume) = 0;
-
-	virtual float GetVolume() = 0;
+	virtual class USizeComponent* GetSizeComponent() = 0;
 };

@@ -47,16 +47,6 @@ void ABacterialCell::Destroyed()
 	UEnvironment::GetEnvironment()->RemoveActorFromEnvironment(this);
 }
 
-void ABacterialCell::SetCellVolume(float Volume) 
-{
-	PaperSprite->SetWorldScale3D(FVector(Volume/10.0f));
-}
-
-float ABacterialCell::GetCellVolume() 
-{
-	return PaperSprite->GetRelativeScale3D().X*10.0f;
-}
-
 class UHealthComponent* ABacterialCell::GetHealthComponent() 
 {
 	return HealthComponent;
@@ -72,12 +62,7 @@ class UGenomeComponent* ABacterialCell::GetGenomeComponent()
 	return GenomeComponent;
 }
 
-void ABacterialCell::SetVolume(float Volume) 
+class USizeComponent* ABacterialCell::GetSizeComponent() 
 {
-	SetCellVolume(Volume);
-}
-
-float ABacterialCell::GetVolume() 
-{
-	return GetCellVolume();
+	return SizeComponent;
 }

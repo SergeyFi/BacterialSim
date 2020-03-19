@@ -39,9 +39,6 @@ protected:
 	class USizeComponent* SizeComponent;
 
 public:
-	void SetCellVolume(float Volume);
-
-	float GetCellVolume();
 
 	virtual class UHealthComponent* GetHealthComponent() override;
 
@@ -49,7 +46,5 @@ public:
 
 	virtual class UGenomeComponent* GetGenomeComponent() override;
 
-	virtual void SetVolume(float Volume) override;
-
-	virtual float GetVolume() override;
+	virtual class USizeComponent* GetSizeComponent() override;
 };
