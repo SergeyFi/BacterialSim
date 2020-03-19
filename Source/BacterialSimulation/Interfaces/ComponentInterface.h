@@ -25,6 +25,8 @@ public:
 
 	virtual class UEnergyComponent* GetEnergyComponent() = 0;
 
+	virtual class UGenomeComponent* GetGenomeComponent() = 0;
+
 	virtual void SetVolume(float Volume) = 0;
 
 	virtual float GetVolume() = 0;
