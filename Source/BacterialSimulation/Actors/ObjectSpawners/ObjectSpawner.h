@@ -49,4 +49,8 @@ protected:
 	void SpawnObjects();
 
 	FVector GenerateSpawnLocation();
+
+public:
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };
