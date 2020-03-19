@@ -5,8 +5,6 @@
 
 #include "Engine/World.h"
 
-#include "BacterialSimulation/Objects/Environment/Environment.h"
-
 // Sets default values
 AObjectSpawner::AObjectSpawner()
 {
@@ -69,14 +67,4 @@ FVector AObjectSpawner::GenerateSpawnLocation()
 	RandomLocation.Z = 0.0f;
 
 	return RandomLocation;
-}
-
-void AObjectSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason) 
-{
-		// Dirty hack
-
-	if (EndPlayReason == EEndPlayReason::EndPlayInEditor)
-	{
-		UEnvironment::DestroyEnvironment();
-	}
 }

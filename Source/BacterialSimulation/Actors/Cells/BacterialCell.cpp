@@ -8,9 +8,8 @@
 #include "BacterialSimulation/Components/EnergyComponent.h"
 #include "BacterialSimulation/Components/HealthComponent.h"
 #include "BacterialSimulation/Components/GenomeComponent.h"
-#include "BacterialSimulation/Components/EnvironmentEffectComponent.h"
 
-#include "BacterialSimulation/Objects/Environment/Environment.h"
+#include "Engine/World.h"
 
 // Sets default values
 ABacterialCell::ABacterialCell()
@@ -28,8 +27,6 @@ ABacterialCell::ABacterialCell()
 	HealthComponent->EnergyComponent = EnergyComponent;
 
 	GenomeComponent = CreateDefaultSubobject<UGenomeComponent>(TEXT("Genome"));
-
-	EnvironmentEffectComponent = CreateDefaultSubobject<UEnvironmentEffectComponent>(TEXT("EnvironmentEffectComp"));
 }
 
 // Called when the game starts or when spawned
@@ -37,12 +34,12 @@ void ABacterialCell::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UEnvironment::GetEnvironment()->AddActorToEnvironment(this);
+	//UEnvironment::GetEnvironment()->AddActorToEnvironment(this);
 }
 
 void ABacterialCell::Destroyed() 
 {
-	UEnvironment::GetEnvironment()->RemoveActorFromEnvironment(this);
+	//UEnvironment::GetEnvironment()->RemoveActorFromEnvironment(this);
 }
 
 void ABacterialCell::SetCellVolume(float Volume) 
@@ -65,6 +62,11 @@ class UEnergyComponent* ABacterialCell::GetEnergyComponent()
 	return EnergyComponent;
 }
 
+class UGenomeComponent* ABacterialCell::GetGenomeComponent() 
+{
+	return GenomeComponent;
+}
+
 void ABacterialCell::SetVolume(float Volume) 
 {
 	SetCellVolume(Volume);
@@ -73,9 +75,4 @@ void ABacterialCell::SetVolume(float Volume)
 float ABacterialCell::GetVolume() 
 {
 	return GetCellVolume();
-}
-
-void ABacterialCell::ApplyEnvironmentEffect(class UEnvironmentEffect* EnvironmentEffect) 
-{
-	EnvironmentEffectComponent->ApplyEnvironmentEffect(EnvironmentEffect);
 }
