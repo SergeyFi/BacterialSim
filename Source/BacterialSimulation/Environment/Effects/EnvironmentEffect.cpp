@@ -3,3 +3,8 @@
 
 #include "EnvironmentEffect.h"
 
+
+void UEnvironmentEffect::ApplyEffect(AActor* Target) 
+{
+    
+}

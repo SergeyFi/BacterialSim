@@ -11,5 +11,8 @@ UCLASS()
 class BACTERIALSIMULATION_API UEnvironmentEffect : public UObject
 {
 	GENERATED_BODY()
-	
+
+public:
+
+	void ApplyEffect(AActor* Target);
 };
