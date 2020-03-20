@@ -8,7 +8,6 @@
 
 UGene::UGene() 
 {
-    bIsActive = true;
 }
 
 void UGene::Mutate() 
@@ -20,15 +19,21 @@ int32 UGene::GetGeneLength()
     return GeneLength;
 }
 
-void UGene::Init(class AActor* Owner) 
+void UGene::Init(class AActor* OwnerRef) 
 {
-    if (Owner)
+    if (OwnerRef)
     {
-        OwnerComponents = Cast<IComponentInterface>(Owner);
+        OwnerComponents = Cast<IComponentInterface>(OwnerRef);
+        Owner = OwnerRef;
     }
 }
 
 void UGene::ActivateGene() 
+{
+    
+}
+
+void UGene::DeactivateGene() 
 {
     
 }
