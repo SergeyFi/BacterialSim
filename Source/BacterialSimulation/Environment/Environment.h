@@ -15,7 +15,6 @@ class BACTERIALSIMULATION_API UEnvironment : public UObject
 private:
 
 	UEnvironment();
-	static UEnvironment* EnvironmentInstance;
 
 protected:
 
@@ -42,8 +41,6 @@ public:
 	void AddActorToEnvironment(class AActor* Actor);
 
 	void RemoveActorFromEnvironment(class AActor* Actor);
-
-	static void DestroyEnvironment();
 
 	void UpdateEnvironmentEffects(TSubclassOf<class UEnvironmentEffect> Effect = nullptr);
 

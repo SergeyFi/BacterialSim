@@ -73,17 +73,9 @@ void UEnvironment::UpdateEnvironmentEffects(TSubclassOf<UEnvironmentEffect> Effe
 }
 
 
-
-UEnvironment* UEnvironment::EnvironmentInstance = nullptr;
-
 UEnvironment* UEnvironment::GetEnvironment() 
 {
-    if (EnvironmentInstance == nullptr)
-    {
-        EnvironmentInstance = NewObject<UEnvironment>();
-    }
-
-    return EnvironmentInstance;
+    return UEnvironment::StaticClass()->GetDefaultObject<UEnvironment>();
 }
 
 void UEnvironment::AddActorToEnvironment(AActor* Actor) 
@@ -95,9 +87,3 @@ void UEnvironment::RemoveActorFromEnvironment(class AActor* Actor)
 {
     EnvironmentActors.RemoveSingle(Actor);
 }
-
-void UEnvironment::DestroyEnvironment() 
-{
-    EnvironmentInstance = nullptr;
-}
-

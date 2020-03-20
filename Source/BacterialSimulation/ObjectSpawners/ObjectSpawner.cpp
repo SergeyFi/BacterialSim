@@ -34,16 +34,6 @@ void AObjectSpawner::BeginPlay()
 	
 }
 
-void AObjectSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason) 
-{
-	// Dirty hack to destroy environment in editor
-	
-	if (EndPlayReason == EEndPlayReason::EndPlayInEditor)
-	{
-		UEnvironment::DestroyEnvironment();
-	}
-}
-
 void AObjectSpawner::SpawnObjects() 
 {
 	UWorld* World = GetWorld();
