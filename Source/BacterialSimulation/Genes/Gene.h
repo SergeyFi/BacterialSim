@@ -19,9 +19,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	int32 GeneLength;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	bool bIsActive;
+
 	class IComponentInterface* Components;
 
 public:
+
+	UGene();
 
 	virtual void Mutate();
 

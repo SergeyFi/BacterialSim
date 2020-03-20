@@ -6,6 +6,11 @@
 
 #include "BacterialSimulation/Interfaces/ComponentInterface.h"
 
+UGene::UGene() 
+{
+    bIsActive = true;
+}
+
 void UGene::Mutate() 
 {
 }
