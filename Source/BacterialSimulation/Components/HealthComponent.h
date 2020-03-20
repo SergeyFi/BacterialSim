@@ -72,5 +72,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Health component")
 	class UEnergyComponent* EnergyComponent;
+
+	float GetHealthCurrent();
 	
 };

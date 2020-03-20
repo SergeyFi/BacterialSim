@@ -115,3 +115,8 @@ void UHealthComponent::StopStarving()
 		bIsStarving = false;
 	}
 }
+
+float UHealthComponent::GetHealthCurrent() 
+{
+	return HealthCurrent;
+}
