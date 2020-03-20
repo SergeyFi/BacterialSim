@@ -41,6 +41,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Spawn", Meta = (MakeEditWidget = true))
 	FVector SpawnXLocation;
 
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason);
+
 
 protected:
 	// Called when the game starts or when spawned

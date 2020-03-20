@@ -5,6 +5,8 @@
 
 #include "Engine/World.h"
 
+#include "BacterialSimulation/Environment/Environment.h"
+
 // Sets default values
 AObjectSpawner::AObjectSpawner()
 {
@@ -30,6 +32,16 @@ void AObjectSpawner::BeginPlay()
 		SpawnObjects();
 	}
 	
+}
+
+void AObjectSpawner::EndPlay(const EEndPlayReason::Type EndPlayReason) 
+{
+	// Dirty hack to destroy environment in editor
+	
+	if (EndPlayReason == EEndPlayReason::EndPlayInEditor)
+	{
+		UEnvironment::DestroyEnvironment();
+	}
 }
 
 void AObjectSpawner::SpawnObjects() 
