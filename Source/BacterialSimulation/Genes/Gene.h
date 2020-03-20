@@ -22,7 +22,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	bool bIsActive;
 
-	class IComponentInterface* Components;
+	class IComponentInterface* OwnerComponents;
 
 public:
 
@@ -33,5 +33,6 @@ public:
 	int32 GetGeneLength();
 
 	void Init(class AActor* Owner);
-	
+
+	virtual void ActivateGene();
 };

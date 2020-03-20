@@ -19,6 +19,8 @@ void UGenomeComponent::BeginPlay()
 	Super::BeginPlay();
 
 	AddBaseGenes();
+
+	ActivateGenes();
 }
 
 void UGenomeComponent::AddNewRandomGene() 
@@ -29,6 +31,7 @@ void UGenomeComponent::AddNewRandomGene()
 	{
 		Genome.Add(DuplicateObject<UGene>(GeneRandomClass->GetDefaultObject<UGene>(), this));
 		Genome.Last()->Init(GetOwner());
+		Genome.Last()->ActivateGene();
 	}
 }
 
@@ -60,6 +63,17 @@ void UGenomeComponent::AddBaseGenes()
 		{
 			Genome.Add(DuplicateObject<UGene>(GeneClass->GetDefaultObject<UGene>(), this));
 			Genome.Last()->Init(GetOwner());
+		}
+	}
+}
+
+void UGenomeComponent::ActivateGenes() 
+{
+	for (auto Gene : Genome)
+	{
+		if (Gene)
+		{
+			Gene->ActivateGene();
 		}
 	}
 }

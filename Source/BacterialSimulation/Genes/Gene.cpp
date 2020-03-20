@@ -22,5 +22,13 @@ int32 UGene::GetGeneLength()
 
 void UGene::Init(class AActor* Owner) 
 {
-    Components = Cast<IComponentInterface>(Owner);
+    if (Owner)
+    {
+        OwnerComponents = Cast<IComponentInterface>(Owner);
+    }
+}
+
+void UGene::ActivateGene() 
+{
+    
 }

@@ -41,6 +41,8 @@ protected:
 
 	void AddBaseGenes();
 
+	void ActivateGenes();
+
 public:
 
 	int32 GetGenomeLength();
