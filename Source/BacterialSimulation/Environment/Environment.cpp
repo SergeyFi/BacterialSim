@@ -87,3 +87,22 @@ void UEnvironment::RemoveActorFromEnvironment(class AActor* Actor)
 {
     EnvironmentActors.RemoveSingle(Actor);
 }
+
+bool UEnvironment::EffectIsActive(TSubclassOf<class UEnvironmentEffect> Effect) 
+{
+    if (Effect)
+    {
+        for (auto CurrentEffect : EnvironmentEffects)
+        {
+            if (CurrentEffect)
+            {
+                if (CurrentEffect->GetClass() == Effect->GetClass())
+                {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
