@@ -118,3 +118,7 @@ void UGenomeComponent::Mutate()
 
 }
 
+const TArray<class UGene*>& UGenomeComponent::GetGenome()
+{
+	return Genome;
+}

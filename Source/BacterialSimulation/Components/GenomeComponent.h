@@ -48,5 +48,6 @@ public:
 	int32 GetGenomeLength();
 
 	void Mutate();
-		
+
+	const TArray<class UGene*>& GetGenome();
 };
