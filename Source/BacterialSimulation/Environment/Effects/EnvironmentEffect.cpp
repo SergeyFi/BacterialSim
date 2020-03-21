@@ -3,6 +3,10 @@
 
 #include "EnvironmentEffect.h"
 
+UEnvironmentEffect::UEnvironmentEffect() 
+{
+    EffectStrength = 1.0f;
+}
 
 void UEnvironmentEffect::ApplyEffect(AActor* Target) 
 {

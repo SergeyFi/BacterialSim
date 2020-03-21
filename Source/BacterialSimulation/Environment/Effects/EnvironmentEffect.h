@@ -12,7 +12,14 @@ class BACTERIALSIMULATION_API UEnvironmentEffect : public UObject
 {
 	GENERATED_BODY()
 
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effect")
+	float EffectStrength;
+
 public:
+
+	UEnvironmentEffect();
 
 	void ApplyEffect(AActor* Target);
 };
