@@ -11,4 +11,20 @@ UCLASS()
 class BACTERIALSIMULATION_API UGenePhototrophic : public UGene
 {
 	GENERATED_BODY()
+
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene|Phototrophic")
+	float EnergyGeneration;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene|Phototrophic")
+	float EnergyGenerationMax;
+
+public:
+
+	UGenePhototrophic();
+
+	virtual void GeneCicle_Implementation() override;
+
+	virtual void Mutate() override;
 };
