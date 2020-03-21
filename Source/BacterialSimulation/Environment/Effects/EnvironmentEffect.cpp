@@ -12,3 +12,8 @@ void UEnvironmentEffect::ApplyEffect(AActor* Target)
 {
     
 }
+
+float UEnvironmentEffect::GetStrength() 
+{
+    return EffectStrength;
+}

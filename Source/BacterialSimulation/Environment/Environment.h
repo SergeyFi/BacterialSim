@@ -48,6 +48,6 @@ public:
 
 	void StopApplyEffects();
 
-	bool EffectIsActive(TSubclassOf<class UEnvironmentEffect> Effect);
+	UEnvironmentEffect* GetEffectByClass(TSubclassOf<class UEnvironmentEffect> Effect);
 
 };

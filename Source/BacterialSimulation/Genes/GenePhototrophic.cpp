@@ -23,9 +23,11 @@ void UGenePhototrophic::GeneCicle_Implementation()
 {
     if (OwnerComponents)
     {
-        if (UEnvironment::GetEnvironment()->EffectIsActive(ULightEffect::StaticClass()))
+        UEnvironmentEffect* LightEffect = UEnvironment::GetEnvironment()->GetEffectByClass(ULightEffect::StaticClass());
+        
+        if (LightEffect)
         {
-            OwnerComponents->GetEnergyComponent()->AddEnergy(EnergyGeneration);
+            OwnerComponents->GetEnergyComponent()->AddEnergy(EnergyGeneration * LightEffect->GetStrength());
         }
     }
 }
