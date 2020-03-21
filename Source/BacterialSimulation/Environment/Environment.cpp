@@ -56,7 +56,7 @@ void UEnvironment::UpdateEnvironmentEffects(TSubclassOf<UEnvironmentEffect> NewE
 {
     if (NewEffect)
     {
-        EnvironmentEffectClasses.Add(NewEffect);
+        EnvironmentEffectClasses.AddUnique(NewEffect);
     }
 
     EnvironmentEffects.Empty();
