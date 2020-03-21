@@ -6,6 +6,8 @@
 
 #include "BacterialSimulation/Interfaces/ComponentInterface.h"
 
+#include "BacterialSimulation/Components/GenomeComponent.h"
+
 UGene::UGene() 
 {
 }
@@ -36,4 +38,36 @@ void UGene::ActivateGene()
 void UGene::DeactivateGene() 
 {
     
+}
+bool UGene::CheckGenesRequiredToWork() 
+{
+    int32 RequredGenesCount = 0;
+
+    if (OwnerComponents)
+    {
+        UGenomeComponent* GenomeComponent = OwnerComponents->GetGenomeComponent();
+
+        if (GenomeComponent)
+        {
+            for (auto Gene : GenomeComponent->GetGenome())
+            {
+                if (Gene)
+                {
+                    for (auto RequiredGen : GenesRequiredToWork)
+                    {
+                        if (RequiredGen->GetClass() == Gene->GetClass())
+                        {
+                            RequredGenesCount += 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (RequredGenesCount == GenesRequiredToWork.Num())
+    {
+        return true;
+    }
+    else return false;
 }

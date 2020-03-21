@@ -6,6 +6,9 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+
+#include "Templates/SubclassOf.h"
+
 #include "Gene.generated.h"
 
 
@@ -19,8 +22,13 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	int32 GeneLength;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	TArray<TSubclassOf<UGene>> GenesRequiredToWork;
+
 	class IComponentInterface* OwnerComponents;
 	class AActor* Owner;
+
+	bool CheckGenesRequiredToWork();
 
 public:
 
