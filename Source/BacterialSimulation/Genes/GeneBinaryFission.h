@@ -43,7 +43,9 @@ protected:
 
 	void BinaryFission();
 
-	void SpawnOwnerCopy(FVector SpawnLocation);
+	TArray<FVector> FindLocationsToBinaryFission();
+
+	void SpawnOwnerInheritor(FVector SpawnLocation);
 
 public:
 

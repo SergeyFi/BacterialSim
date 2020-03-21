@@ -10,7 +10,7 @@
 #include "BacterialSimulation/Components/EnergyComponent.h"
 #include "BacterialSimulation/Components/HealthComponent.h"
 
-#include "DrawDebugHelpers.h"
+//#include "DrawDebugHelpers.h"
 
 #include "GameFramework/Actor.h"
 
@@ -76,9 +76,22 @@ void UGeneBinaryFission::DeactivateGene()
 
 void UGeneBinaryFission::BinaryFission() 
 {
+    TArray<FVector> SpawnLocations = FindLocationsToBinaryFission();
+
+    if (SpawnLocations.Num() != 0)
+    {
+        SpawnOwnerInheritor(SpawnLocations[FMath::RandRange(0, SpawnLocations.Num()-1)]);
+    }
+}
+
+TArray<FVector> UGeneBinaryFission::FindLocationsToBinaryFission() 
+{
     UWorld* World = GetWorld();
 
+    TArray<FVector> SpawnLocations;
+
     float CheckStep = 45.0f;
+    float DistanceBetween = 2.0f;
 
     FVector SpawnLocation;
     SpawnLocation = FVector(0.0f, 0.0f, 0.0f);
@@ -91,8 +104,8 @@ void UGeneBinaryFission::BinaryFission()
 
     for (float Angle = CheckStep ; Angle < 360.0f - CheckStep; Angle += CheckStep)
     {
-        float X = Origin.X + (BoxExtent.Y + 2.0f) * 2.0f * FMath::Cos(Angle);
-        float Y = Origin.Y + (BoxExtent.Y + 2.0f) * 2.0f * FMath::Sin(Angle);
+        float X = Origin.X + (BoxExtent.Y + DistanceBetween) * 2.0f * FMath::Cos(Angle);
+        float Y = Origin.Y + (BoxExtent.Y + DistanceBetween) * 2.0f * FMath::Sin(Angle);
 
         SpawnLocation.X = X;
         SpawnLocation.Y = Y;
@@ -111,15 +124,16 @@ void UGeneBinaryFission::BinaryFission()
             if (!IsHit)
             {
                 //DrawDebugSphere(World, SpawnLocation, CollisionSphere.GetSphereRadius(), 20, FColor::Green, true);
-                SpawnOwnerCopy(SpawnLocation);
-                break;
+                SpawnLocations.Add(SpawnLocation);
             }
         }
     }
 
+    return SpawnLocations;
+
 }
 
-void UGeneBinaryFission::SpawnOwnerCopy(FVector SpawnLocation) 
+void UGeneBinaryFission::SpawnOwnerInheritor(FVector SpawnLocation) 
 {
     UWorld* World = GetWorld();
     
