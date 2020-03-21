@@ -19,18 +19,14 @@ UGeneBinaryFission::UGeneBinaryFission()
 {
     MinimumHealthToFission = 90.0f;
     MinimumEnergyToFission = 90.0f;
-    EnergyWasteOnFission = 50.0f;
-    ConditionsCheckPeriod = 1.0f;
+    EnergyWasteOnFission = 0.0f;
+
+    bNeedGeneCicle = true;
 }
 
-void UGeneBinaryFission::StartConditionCheck() 
+void UGeneBinaryFission::GeneCicle_Implementation() 
 {
-    UWorld* World = GetWorld();
-    
-    if (World)
-    {
-        World->GetTimerManager().SetTimer(TimerConditionChecker, this, &UGeneBinaryFission::ConditionCheck, ConditionsCheckPeriod, true);
-    }
+    ConditionCheck();
 }
 
 void UGeneBinaryFission::ConditionCheck() 
@@ -47,33 +43,6 @@ void UGeneBinaryFission::ConditionCheck()
     }
 }
 
-void UGeneBinaryFission::StopConditionCheck() 
-{
-    UWorld* World = GetWorld();
-    
-    if (World)
-    {
-        World->GetTimerManager().ClearTimer(TimerConditionChecker);
-    }
-}
-
-void UGeneBinaryFission::ActivateGene() 
-{
-    if (Owner)
-    {
-        bIsActive = true;
-
-        StartConditionCheck();
-    }
-}
-
-void UGeneBinaryFission::DeactivateGene() 
-{
-    bIsActive = false;
-
-    StopConditionCheck();
-}
-
 void UGeneBinaryFission::BinaryFission() 
 {
     TArray<FVector> SpawnLocations = FindLocationsToBinaryFission();
@@ -81,6 +50,7 @@ void UGeneBinaryFission::BinaryFission()
     if (SpawnLocations.Num() != 0)
     {
         SpawnOwnerInheritor(SpawnLocations[FMath::RandRange(0, SpawnLocations.Num()-1)]);
+
         ResourceWasteOnFission();
     }
 }
@@ -92,7 +62,7 @@ TArray<FVector> UGeneBinaryFission::FindLocationsToBinaryFission()
     TArray<FVector> SpawnLocations;
 
     float CheckStep = 45.0f;
-    float DistanceBetween = 2.0f;
+    float DistanceBetween = 1.0f;
 
     FVector SpawnLocation;
     SpawnLocation = FVector(0.0f, 0.0f, 0.0f);
@@ -115,7 +85,7 @@ TArray<FVector> UGeneBinaryFission::FindLocationsToBinaryFission()
         {
             FHitResult HitResult;
 
-            FCollisionShape CollisionSphere = FCollisionShape::MakeSphere(BoxExtent.Y/2);
+            FCollisionShape CollisionSphere = FCollisionShape::MakeSphere(BoxExtent.Y*0.5f);
 
             bool IsHit = World->SweepSingleByChannel(HitResult, SpawnLocation, 
             FVector(X, Y, 1.0f), FQuat::Identity, ECC_WorldDynamic, CollisionSphere);

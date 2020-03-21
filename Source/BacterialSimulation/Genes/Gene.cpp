@@ -40,6 +40,8 @@ void UGene::ActivateGene()
     {
         StartGeneCicle();
     }
+
+    bIsActive = true;
 }
 
 void UGene::DeactivateGene() 
@@ -48,6 +50,8 @@ void UGene::DeactivateGene()
     {
         StopGeneCicle();
     }
+
+    bIsActive = false;
 }
 
 bool UGene::CheckGenesRequiredToWork() 

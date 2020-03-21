@@ -24,20 +24,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	float EnergyWasteOnFission;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
-	float ConditionsCheckPeriod;
-
-	FTimerHandle TimerConditionChecker;
-
-	void StartConditionCheck();
+	virtual void GeneCicle_Implementation() override;
 
 	void ConditionCheck();
-
-	void StopConditionCheck();
-
-	virtual void ActivateGene() override;
-
-	virtual void DeactivateGene() override;
 
 	void BinaryFission();
 
