@@ -42,7 +42,7 @@ public:
 
 	void RemoveActorFromEnvironment(class AActor* Actor);
 
-	void UpdateEnvironmentEffects(TSubclassOf<class UEnvironmentEffect> Effect = nullptr);
+	void UpdateEnvironmentEffects(TSubclassOf<class UEnvironmentEffect> NewEffect = nullptr);
 
 	void StartApplyEffects();
 

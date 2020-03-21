@@ -52,11 +52,11 @@ void UEnvironment::StopApplyEffects()
 }
 
 
-void UEnvironment::UpdateEnvironmentEffects(TSubclassOf<UEnvironmentEffect> Effect) 
+void UEnvironment::UpdateEnvironmentEffects(TSubclassOf<UEnvironmentEffect> NewEffect) 
 {
-    if (Effect)
+    if (NewEffect)
     {
-        EnvironmentEffectClasses.Add(Effect);
+        EnvironmentEffectClasses.Add(NewEffect);
     }
 
     EnvironmentEffects.Empty();
