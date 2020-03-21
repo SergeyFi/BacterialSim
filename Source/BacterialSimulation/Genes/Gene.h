@@ -19,10 +19,20 @@ class BACTERIALSIMULATION_API UGene : public UObject
 {
 	GENERATED_BODY()
 
+private:
+
+	void StartGeneCicle();
+
+	void StopGeneCicle();
+
+
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	int32 GeneLength;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	float GeneShutdownChance;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	TArray<TSubclassOf<UGene>> GenesRequiredToWork;
@@ -33,25 +43,23 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	float GeneCiclePeriod;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	bool bIsActive;
+
 	class IComponentInterface* OwnerComponents;
 	class AActor* Owner;
 
 	bool CheckGenesRequiredToWork();
 
-	void StartGeneCicle();
-
 	virtual void GeneCicle_Implementation();
 
-	void StopGeneCicle();
+	void GeneChangeStateChance();
 
 	FTimerHandle GeneCicleTimer;
 
 public:
 
 	UGene();
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
-	bool bIsActive;
 
 	virtual void Mutate();
 
@@ -62,4 +70,6 @@ public:
 	virtual void ActivateGene();
 
 	virtual void DeactivateGene();
+
+	bool IsActive();
 };

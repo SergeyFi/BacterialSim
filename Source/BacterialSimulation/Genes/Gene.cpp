@@ -14,6 +14,7 @@
 UGene::UGene() 
 {
     GeneCiclePeriod = 1.0f;
+    GeneShutdownChance = 0.1f;
 }
 
 void UGene::Mutate() 
@@ -52,6 +53,11 @@ void UGene::DeactivateGene()
     }
 
     bIsActive = false;
+}
+
+bool UGene::IsActive() 
+{
+    return bIsActive;
 }
 
 bool UGene::CheckGenesRequiredToWork() 
@@ -109,5 +115,17 @@ void UGene::StopGeneCicle()
     if (World)
     {
         World->GetTimerManager().ClearTimer(GeneCicleTimer);
+    }
+}
+
+void UGene::GeneChangeStateChance() 
+{
+    if (FMath::RandRange(0.0f, 1.0f) < GeneShutdownChance)
+    {
+        DeactivateGene();
+    }
+    else if (!bIsActive)
+    {
+        ActivateGene();
     }
 }
