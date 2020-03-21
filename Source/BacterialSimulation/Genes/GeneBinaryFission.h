@@ -47,6 +47,8 @@ protected:
 
 	void SpawnOwnerInheritor(FVector SpawnLocation);
 
+	virtual void ResourceWasteOnFission();
+
 public:
 
 	UGeneBinaryFission();

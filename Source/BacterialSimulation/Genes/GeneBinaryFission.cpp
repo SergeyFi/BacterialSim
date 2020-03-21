@@ -81,6 +81,7 @@ void UGeneBinaryFission::BinaryFission()
     if (SpawnLocations.Num() != 0)
     {
         SpawnOwnerInheritor(SpawnLocations[FMath::RandRange(0, SpawnLocations.Num()-1)]);
+        ResourceWasteOnFission();
     }
 }
 
@@ -146,5 +147,13 @@ void UGeneBinaryFission::SpawnOwnerInheritor(FVector SpawnLocation)
         SpawnTransform.SetLocation(SpawnLocation);
     
         World->SpawnActor<AActor>(Owner->GetClass(), SpawnTransform, SpawnParams);
+    }
+}
+
+void UGeneBinaryFission::ResourceWasteOnFission() 
+{
+    if (OwnerComponents)
+    {
+        OwnerComponents->GetEnergyComponent()->RemoveEnergy(EnergyWasteOnFission);
     }
 }
