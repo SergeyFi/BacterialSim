@@ -9,6 +9,8 @@
 
 #include "Templates/SubclassOf.h"
 
+#include "Engine/EngineTypes.h"
+
 #include "Gene.generated.h"
 
 
@@ -25,10 +27,24 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	TArray<TSubclassOf<UGene>> GenesRequiredToWork;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	bool bNeedGeneCicle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	float GeneCiclePeriod;
+
 	class IComponentInterface* OwnerComponents;
 	class AActor* Owner;
 
 	bool CheckGenesRequiredToWork();
+
+	void StartGeneCicle();
+
+	virtual void GeneCicle_Implementation();
+
+	void StopGeneCicle();
+
+	FTimerHandle GeneCicleTimer;
 
 public:
 

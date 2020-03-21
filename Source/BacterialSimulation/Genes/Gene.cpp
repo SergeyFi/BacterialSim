@@ -8,8 +8,12 @@
 
 #include "BacterialSimulation/Components/GenomeComponent.h"
 
+#include "Engine/World.h"
+#include "TimerManager.h"
+
 UGene::UGene() 
 {
+    GeneCiclePeriod = 1.0f;
 }
 
 void UGene::Mutate() 
@@ -32,13 +36,20 @@ void UGene::Init(class AActor* OwnerRef)
 
 void UGene::ActivateGene() 
 {
-    
+    if (bNeedGeneCicle)
+    {
+        StartGeneCicle();
+    }
 }
 
 void UGene::DeactivateGene() 
 {
-    
+    if (bNeedGeneCicle)
+    {
+        StopGeneCicle();
+    }
 }
+
 bool UGene::CheckGenesRequiredToWork() 
 {
     int32 RequredGenesCount = 0;
@@ -70,4 +81,29 @@ bool UGene::CheckGenesRequiredToWork()
         return true;
     }
     else return false;
+}
+
+void UGene::StartGeneCicle() 
+{
+    UWorld* World = GetWorld();
+    
+    if (World)
+    {
+        World->GetTimerManager().SetTimer(GeneCicleTimer, this, &UGene::GeneCicle_Implementation, GeneCiclePeriod, true);
+    }
+}
+
+void UGene::GeneCicle_Implementation() 
+{
+    
+}
+
+void UGene::StopGeneCicle() 
+{
+    UWorld* World = GetWorld();
+    
+    if (World)
+    {
+        World->GetTimerManager().ClearTimer(GeneCicleTimer);
+    }
 }

@@ -5,8 +5,6 @@
 #include "CoreMinimal.h"
 #include "BacterialSimulation/Genes/Gene.h"
 
-#include "Engine/EngineTypes.h"
-
 #include "GeneBinaryFission.generated.h"
 
 
