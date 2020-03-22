@@ -12,53 +12,11 @@
 
 UEnvironment::UEnvironment() 
 {
-    ApplyEffectPeriod = 1.0f;
 
-    UpdateEnvironmentEffects();
 }
 
-void UEnvironment::ApplyEffectsToActors()
+void UEnvironment::UpdateEnvironmentEffects() 
 {
-    for (auto Effect : EnvironmentEffects)
-    {
-        if (Effect)
-        {
-            for (auto Target : EnvironmentActors)
-            {
-                Effect->ApplyEffect(Target);
-            }
-        }
-    }
-}
-
-void UEnvironment::StartApplyEffects() 
-{
-    UWorld* World = GetWorld();
-    
-    if (World)
-    {
-        World->GetTimerManager().SetTimer(TimerEffect, this, &UEnvironment::ApplyEffectsToActors, ApplyEffectPeriod, true);
-    }
-}
-
-void UEnvironment::StopApplyEffects() 
-{
-    UWorld* World = GetWorld();
-    
-    if (World)
-    {
-        World->GetTimerManager().ClearTimer(TimerEffect);
-    }
-}
-
-
-void UEnvironment::UpdateEnvironmentEffects(TSubclassOf<UEnvironmentEffect> NewEffect) 
-{
-    if (NewEffect)
-    {
-        EnvironmentEffectClasses.AddUnique(NewEffect);
-    }
-
     EnvironmentEffects.Empty();
 
     for (auto EffectClass : EnvironmentEffectClasses)
@@ -69,6 +27,16 @@ void UEnvironment::UpdateEnvironmentEffects(TSubclassOf<UEnvironmentEffect> NewE
 
             EnvironmentEffects.Add(Effect);
         }
+    }
+}
+
+void UEnvironment::AddEnvironmentEffect(TSubclassOf<class UEnvironmentEffect> NewEffect) 
+{
+    if (NewEffect)
+    {
+        EnvironmentEffectClasses.AddUnique(NewEffect);
+
+        UpdateEnvironmentEffects();
     }
 }
 

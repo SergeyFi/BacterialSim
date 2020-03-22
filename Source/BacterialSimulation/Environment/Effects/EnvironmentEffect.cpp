@@ -8,11 +8,6 @@ UEnvironmentEffect::UEnvironmentEffect()
     EffectStrength = 1.0f;
 }
 
-void UEnvironmentEffect::ApplyEffect(AActor* Target) 
-{
-    
-}
-
 float UEnvironmentEffect::GetStrength() 
 {
     return EffectStrength;

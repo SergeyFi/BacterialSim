@@ -21,7 +21,5 @@ public:
 
 	UEnvironmentEffect();
 
-	void ApplyEffect(AActor* Target);
-
 	float GetStrength();
 };
