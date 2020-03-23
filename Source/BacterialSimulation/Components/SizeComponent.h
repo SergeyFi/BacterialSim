@@ -26,4 +26,6 @@ protected:
 	void SetOwnerSize(float Size);
 
 	float GetOwnerSize();
+
+	void ShiftOwnerSize(float SizeShift);
 };

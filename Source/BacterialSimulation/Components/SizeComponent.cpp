@@ -40,3 +40,11 @@ float USizeComponent::GetOwnerSize()
 	return 0.0f;
 }
 
+void USizeComponent::ShiftOwnerSize(float SizeShift) 
+{
+	if (GetOwner())
+	{
+		SetOwnerSize(GetOwnerSize() - SizeShift);
+	}
+}
+
