@@ -27,6 +27,16 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
 	TArray<TSubclassOf<class UEnvironmentEffect>> EnvironmentEffectClasses;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
+	TArray<class UEnvironmentElement*> EnvironmentElements;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
+	TArray<TSubclassOf<class UEnvironmentElement>> EnvironmentElementClasses;
+
+	void UpdateEnvironmentEffects();
+
+	void UpdateEnvironmentElements();
+
 public:
 
 	static UEnvironment* GetEnvironment();
@@ -35,10 +45,10 @@ public:
 
 	void RemoveActorFromEnvironment(class AActor* Actor);
 
-	void UpdateEnvironmentEffects();
-
 	void AddEnvironmentEffect(TSubclassOf<class UEnvironmentEffect> NewEffect);
 
 	UEnvironmentEffect* GetEffectByClass(TSubclassOf<class UEnvironmentEffect> Effect);
+
+	class UEnvironmentElement* GetElementByClass(TSubclassOf<class UEnvironmentElement> Element);
 
 };

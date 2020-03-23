@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 
 #include "BacterialSimulation/Environment/Effects/EnvironmentEffect.h"
+#include "BacterialSimulation/Environment/Elements/EnvironmentElement.h"
 
 #include "Engine/World.h"
 #include "TimerManager.h"
@@ -12,7 +13,8 @@
 
 UEnvironment::UEnvironment() 
 {
-
+    UpdateEnvironmentEffects();
+    UpdateEnvironmentElements();
 }
 
 void UEnvironment::UpdateEnvironmentEffects() 
@@ -28,6 +30,22 @@ void UEnvironment::UpdateEnvironmentEffects()
             EnvironmentEffects.Add(Effect);
         }
     }
+}
+
+void UEnvironment::UpdateEnvironmentElements() 
+{
+    EnvironmentElements.Empty();
+
+    for (auto ElementClass : EnvironmentElementClasses)
+    {
+        if (ElementClass)
+        {
+            UEnvironmentElement* Element = DuplicateObject<UEnvironmentElement>(ElementClass->GetDefaultObject<UEnvironmentElement>(), this);
+
+            EnvironmentElements.Add(Element);
+        }
+    }
+
 }
 
 void UEnvironment::AddEnvironmentEffect(TSubclassOf<class UEnvironmentEffect> NewEffect) 
@@ -67,6 +85,25 @@ UEnvironmentEffect* UEnvironment::GetEffectByClass(TSubclassOf<class UEnvironmen
                 if (CurrentEffect->GetClass() == Effect->GetClass())
                 {
                     return CurrentEffect;
+                }
+            }
+        }
+    }
+
+    return nullptr;
+}
+
+class UEnvironmentElement* UEnvironment::GetElementByClass(TSubclassOf<class UEnvironmentElement> Element) 
+{
+    if (Element)
+    {
+        for (auto CurrentElement : EnvironmentElements)
+        {
+            if (CurrentElement)
+            {
+                if (CurrentElement->GetClass() == Element->GetClass())
+                {
+                    return CurrentElement;
                 }
             }
         }
