@@ -25,6 +25,8 @@ private:
 
 	void StopGeneCicle();
 
+	void GeneChangeStateChance();
+
 
 protected:
 
@@ -53,7 +55,7 @@ protected:
 
 	virtual void GeneCicle_Implementation();
 
-	void GeneChangeStateChance();
+	virtual void Mutate_Implementation();
 
 	FTimerHandle GeneCicleTimer;
 
@@ -61,7 +63,7 @@ public:
 
 	UGene();
 
-	virtual void Mutate();
+	void Mutate();
 
 	int32 GetGeneLength();
 

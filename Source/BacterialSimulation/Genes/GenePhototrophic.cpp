@@ -32,10 +32,8 @@ void UGenePhototrophic::GeneCicle_Implementation()
     }
 }
 
-void UGenePhototrophic::Mutate() 
+void UGenePhototrophic::Mutate_Implementation() 
 {
-    GeneChangeStateChance();
-
     EnergyGeneration = FMath::RandRange(-0.3f, 0.3f);
 
     FMath::Clamp(EnergyGeneration, 0.0f, EnergyGenerationMax);

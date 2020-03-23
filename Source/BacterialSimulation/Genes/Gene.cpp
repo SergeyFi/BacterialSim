@@ -19,6 +19,14 @@ UGene::UGene()
 
 void UGene::Mutate() 
 {
+    GeneChangeStateChance();
+
+    Mutate_Implementation();
+}
+
+void UGene::Mutate_Implementation() 
+{
+    
 }
 
 int32 UGene::GetGeneLength() 

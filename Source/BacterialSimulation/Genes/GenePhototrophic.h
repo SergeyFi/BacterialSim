@@ -26,5 +26,5 @@ public:
 
 	virtual void GeneCicle_Implementation() override;
 
-	virtual void Mutate() override;
+	virtual void Mutate_Implementation() override;
 };
