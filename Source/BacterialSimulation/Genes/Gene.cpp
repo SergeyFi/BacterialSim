@@ -15,11 +15,15 @@ UGene::UGene()
 {
     GeneCiclePeriod = 1.0f;
     GeneShutdownChance = 0.1f;
+    bCanBeTurnOff = true;
 }
 
 void UGene::Mutate() 
 {
-    GeneChangeStateChance();
+    if (bCanBeTurnOff)
+    {
+        GeneChangeStateChance();
+    }
 
     Mutate_Implementation();
 }
