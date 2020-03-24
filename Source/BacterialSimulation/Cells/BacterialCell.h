@@ -40,6 +40,8 @@ protected:
 
 public:
 
+	virtual class UPaperSpriteComponent* GetPaperSpriteComponent() override;
+
 	virtual class UHealthComponent* GetHealthComponent() override;
 
 	virtual class UEnergyComponent* GetEnergyComponent() override;

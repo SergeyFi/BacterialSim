@@ -4,7 +4,6 @@
 #include "BacterialCell.h"
 
 #include "PaperSpriteComponent.h"
-
 #include "BacterialSimulation/Components/EnergyComponent.h"
 #include "BacterialSimulation/Components/HealthComponent.h"
 #include "BacterialSimulation/Components/GenomeComponent.h"
@@ -45,6 +44,11 @@ void ABacterialCell::BeginPlay()
 void ABacterialCell::Destroyed() 
 {
 	UEnvironment::GetEnvironment()->RemoveActorFromEnvironment(this);
+}
+
+class UPaperSpriteComponent* ABacterialCell::GetPaperSpriteComponent() 
+{
+	return PaperSprite;
 }
 
 class UHealthComponent* ABacterialCell::GetHealthComponent() 
