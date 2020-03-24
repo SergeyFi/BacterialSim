@@ -20,6 +20,10 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene|Phototrophic")
 	float EnergyGenerationMax;
 
+	virtual void ActivateGene_Implementation();
+
+	virtual void DeactivateGene_Implementation();
+
 public:
 
 	UGenePhototrophic();

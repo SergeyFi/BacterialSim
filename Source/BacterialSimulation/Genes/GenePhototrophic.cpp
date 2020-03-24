@@ -10,6 +10,8 @@
 #include "BacterialSimulation/Environment/Environment.h"
 #include "BacterialSimulation/Environment/Effects/Light/LightEffect.h"
 
+#include "PaperSpriteComponent.h"
+
 
 UGenePhototrophic::UGenePhototrophic() 
 {
@@ -37,4 +39,20 @@ void UGenePhototrophic::Mutate_Implementation()
     EnergyGeneration = FMath::RandRange(-0.3f, 0.3f);
 
     FMath::Clamp(EnergyGeneration, 0.0f, EnergyGenerationMax);
+}
+
+void UGenePhototrophic::ActivateGene_Implementation() 
+{
+    if (OwnerComponents)
+    {
+        OwnerComponents->GetPaperSpriteComponent()->SetSpriteColor(FLinearColor(0.13f, 0.8f, 0.13f));
+    }
+}
+
+void UGenePhototrophic::DeactivateGene_Implementation() 
+{
+    if (OwnerComponents)
+    {
+        OwnerComponents->GetPaperSpriteComponent()->SetSpriteColor(FLinearColor(1.0f, 1.0f, 1.0f));
+    }
 }
