@@ -46,7 +46,7 @@ protected:
 	float GeneCiclePeriod;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
-	bool bCanBeTurnOff;
+	bool bCanBeDeactivated;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gene")
 	bool bIsActive;

@@ -15,12 +15,12 @@ UGene::UGene()
 {
     GeneCiclePeriod = 1.0f;
     GeneShutdownChance = 0.1f;
-    bCanBeTurnOff = true;
+    bCanBeDeactivated = true;
 }
 
 void UGene::Mutate() 
 {
-    if (bCanBeTurnOff)
+    if (bCanBeDeactivated)
     {
         GeneChangeStateChance();
     }
@@ -76,7 +76,10 @@ void UGene::DeactivateGene()
 
     DeactivateGene_Implementation();
 
-    bIsActive = false;
+    if (bCanBeDeactivated)
+    {
+        bIsActive = false;
+    }
 }
 
 bool UGene::IsActive() 
