@@ -5,6 +5,10 @@
 
 #include "GameFramework/Actor.h"
 
+#include "BacterialSimulation/Interfaces/HealthComponentInterface.h"
+
+#include "BacterialSimulation/Components/HealthComponent.h"
+
 // Sets default values for this component's properties
 USizeComponent::USizeComponent()
 {
@@ -13,6 +17,16 @@ USizeComponent::USizeComponent()
 	InitialSize = 1.0f;
 
 	SetOwnerSize(InitialSize);
+
+	if (GetOwner())
+	{
+		IHealthComponentInterface* HealthComponentIterface = Cast<IHealthComponentInterface>(GetOwner());
+
+		if (HealthComponentIterface)
+		{
+			HealthComponentIterface->GetHealthComponent()->OnHealthChanged.AddDynamic(this, &USizeComponent::SizeDependOnHealth);
+		}
+	}
 }
 
 
@@ -20,6 +34,16 @@ USizeComponent::USizeComponent()
 void USizeComponent::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void USizeComponent::SizeDependOnHealth(float HealthCurrent, float HealthMax) 
+{
+	float Ratio = HealthCurrent / HealthMax;
+
+	if (Ratio > 0.2f)
+	{
+		SetOwnerSize(GetOwnerSize() * Ratio);
+	}
 }
 
 void USizeComponent::SetOwnerSize(float Size) 

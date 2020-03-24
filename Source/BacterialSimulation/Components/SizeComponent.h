@@ -23,6 +23,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Size component")
 	float InitialSize;
 
+	void SizeDependOnHealth(float HealthCurrent, float HealthMax);
+
 public:
 
 	void SetOwnerSize(float Size);
