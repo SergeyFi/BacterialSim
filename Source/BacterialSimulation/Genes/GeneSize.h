@@ -11,5 +11,16 @@ UCLASS()
 class BACTERIALSIMULATION_API UGeneSize : public UGene
 {
 	GENERATED_BODY()
+
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gene|Size")
+	float SizeRange;
+
+	virtual void Mutate_Implementation() override;
+
+public:
+
+	UGeneSize();
 	
 };

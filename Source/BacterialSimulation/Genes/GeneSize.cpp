@@ -3,3 +3,21 @@
 
 #include "GeneSize.h"
 
+#include "BacterialSimulation/Interfaces/ComponentInterface.h"
+
+#include "BacterialSimulation/Components/SizeComponent.h"
+
+
+UGeneSize::UGeneSize() 
+{
+    bCanBeDeactivated = false;
+    SizeRange = 0.1;
+}
+
+void UGeneSize::Mutate_Implementation() 
+{
+    if (OwnerComponents)
+    {
+        OwnerComponents->GetSizeComponent()->ShiftOwnerSize(FMath::RandRange(-SizeRange, SizeRange));
+    }
+}
