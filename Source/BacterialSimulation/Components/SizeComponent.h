@@ -23,6 +23,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Size component")
 	float InitialSize;
 
+public:
+
 	void SetOwnerSize(float Size);
 
 	float GetOwnerSize();
