@@ -3,8 +3,6 @@
 
 #include "GeneSize.h"
 
-#include "BacterialSimulation/Interfaces/ComponentInterface.h"
-
 #include "BacterialSimulation/Components/SizeComponent.h"
 
 
@@ -16,8 +14,8 @@ UGeneSize::UGeneSize()
 
 void UGeneSize::Mutate_Implementation() 
 {
-    if (OwnerComponents)
+    if (OwnerSizeComponent)
     {
-        OwnerComponents->GetSizeComponent()->ShiftOwnerSize(FMath::RandRange(-SizeRange, SizeRange));
+        OwnerSizeComponent->ShiftOwnerSize(FMath::RandRange(-SizeRange, SizeRange));
     }
 }

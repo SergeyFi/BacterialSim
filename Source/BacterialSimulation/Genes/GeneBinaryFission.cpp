@@ -5,8 +5,6 @@
 
 #include "Engine/World.h"
 
-#include "BacterialSimulation/Interfaces/ComponentInterface.h"
-
 #include "BacterialSimulation/Components/EnergyComponent.h"
 #include "BacterialSimulation/Components/HealthComponent.h"
 
@@ -31,15 +29,16 @@ void UGeneBinaryFission::GeneCicle_Implementation()
 
 void UGeneBinaryFission::ConditionCheck() 
 {
-    if (OwnerComponents)
-    {
-        float EnergyCurrent = OwnerComponents->GetEnergyComponent()->GetEnergyCurrent();
-        float HealthCurrent = OwnerComponents->GetHealthComponent()->GetHealthCurrent();
+    float EnergyCurrent = 0.0f;
+    float HealthCurrent = 0.0f;
 
-        if (EnergyCurrent >= MinimumEnergyToFission && HealthCurrent >= MinimumHealthToFission)
-        {
-            BinaryFission();
-        }
+    if (OwnerEnergyComponent) EnergyCurrent = OwnerEnergyComponent->GetEnergyCurrent();
+    
+    if (OwnerHealthComponent) HealthCurrent = OwnerHealthComponent->GetHealthCurrent();
+
+    if (EnergyCurrent >= MinimumEnergyToFission && HealthCurrent >= MinimumHealthToFission)
+    {
+        BinaryFission();
     }
 }
 
@@ -122,8 +121,8 @@ void UGeneBinaryFission::SpawnOwnerInheritor(FVector SpawnLocation)
 
 void UGeneBinaryFission::ResourceWasteOnFission() 
 {
-    if (OwnerComponents)
+    if (OwnerEnergyComponent)
     {
-        OwnerComponents->GetEnergyComponent()->RemoveEnergy(EnergyWasteOnFission);
+        OwnerEnergyComponent->RemoveEnergy(EnergyWasteOnFission);
     }
 }

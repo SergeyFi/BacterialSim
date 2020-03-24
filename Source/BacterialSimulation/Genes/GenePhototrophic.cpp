@@ -3,8 +3,6 @@
 
 #include "GenePhototrophic.h"
 
-#include "BacterialSimulation/Interfaces/ComponentInterface.h"
-
 #include "BacterialSimulation/Components/EnergyComponent.h"
 
 #include "BacterialSimulation/Environment/Environment.h"
@@ -23,13 +21,13 @@ UGenePhototrophic::UGenePhototrophic()
 
 void UGenePhototrophic::GeneCicle_Implementation() 
 {
-    if (OwnerComponents)
+    if (OwnerEnergyComponent)
     {
         UEnvironmentEffect* LightEffect = UEnvironment::GetEnvironment()->GetEffectByClass(ULightEffect::StaticClass());
         
         if (LightEffect)
         {
-            OwnerComponents->GetEnergyComponent()->AddEnergy(EnergyGeneration * LightEffect->GetStrength());
+            OwnerEnergyComponent->AddEnergy(EnergyGeneration * LightEffect->GetStrength());
         }
     }
 }
@@ -43,16 +41,16 @@ void UGenePhototrophic::Mutate_Implementation()
 
 void UGenePhototrophic::ActivateGene_Implementation() 
 {
-    if (OwnerComponents)
+    if (OwnerPaperSpriteComponent)
     {
-        OwnerComponents->GetPaperSpriteComponent()->SetSpriteColor(FLinearColor(0.13f, 0.8f, 0.13f));
+        OwnerPaperSpriteComponent->SetSpriteColor(FLinearColor(0.13f, 0.8f, 0.13f));
     }
 }
 
 void UGenePhototrophic::DeactivateGene_Implementation() 
 {
-    if (OwnerComponents)
+    if (OwnerPaperSpriteComponent)
     {
-        OwnerComponents->GetPaperSpriteComponent()->SetSpriteColor(FLinearColor(1.0f, 1.0f, 1.0f));
+        OwnerPaperSpriteComponent->SetSpriteColor(FLinearColor(1.0f, 1.0f, 1.0f));
     }
 }

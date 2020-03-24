@@ -51,7 +51,16 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gene")
 	bool bIsActive;
 
-	class IComponentInterface* OwnerComponents;
+	class UHealthComponent* OwnerHealthComponent;
+	
+	class UEnergyComponent* OwnerEnergyComponent;
+
+	class UPaperSpriteComponent* OwnerPaperSpriteComponent;
+
+	class UGenomeComponent* OwnerGenomeComponent;
+
+	class USizeComponent* OwnerSizeComponent;
+
 	class AActor* Owner;
 
 	bool CheckGenesRequiredToWork();

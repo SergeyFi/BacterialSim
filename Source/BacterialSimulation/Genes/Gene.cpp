@@ -4,7 +4,11 @@
 
 #include "Gene.h"
 
-#include "BacterialSimulation/Interfaces/ComponentInterface.h"
+#include "BacterialSimulation/Interfaces/EnergyComponentInterface.h"
+#include "BacterialSimulation/Interfaces/GenomeComponentInterface.h"
+#include "BacterialSimulation/Interfaces/HealthComponentInterface.h"
+#include "BacterialSimulation/Interfaces/PaperSpriteInterface.h"
+#include "BacterialSimulation/Interfaces/SizeComponentInterface.h"
 
 #include "BacterialSimulation/Components/GenomeComponent.h"
 
@@ -50,7 +54,21 @@ void UGene::Init(class AActor* OwnerRef)
 {
     if (OwnerRef)
     {
-        OwnerComponents = Cast<IComponentInterface>(OwnerRef);
+        IHealthComponentInterface* HealthComponentInterace = Cast<IHealthComponentInterface>(OwnerRef);
+        if (HealthComponentInterace) OwnerHealthComponent = HealthComponentInterace->GetHealthComponent();
+
+        IEnergyComponentInterface* EnergyComponentInterace = Cast<IEnergyComponentInterface>(OwnerRef);
+        if (EnergyComponentInterace) OwnerEnergyComponent = EnergyComponentInterace->GetEnergyComponent();
+
+        IGenomeComponentInterface* GenomeComponentInterace = Cast<IGenomeComponentInterface>(OwnerRef);
+        if (GenomeComponentInterace) OwnerGenomeComponent = GenomeComponentInterace->GetGenomeComponent();
+
+        IPaperSpriteInterface* PaperSpriteInterace = Cast<IPaperSpriteInterface>(OwnerRef);
+        if (PaperSpriteInterace) OwnerPaperSpriteComponent = PaperSpriteInterace->GetPaperSpriteComponent();
+
+        ISizeComponentInterface* SizeComponentInterace = Cast<ISizeComponentInterface>(OwnerRef);
+        if (SizeComponentInterace) OwnerSizeComponent = SizeComponentInterace->GetSizeComponent();
+
         Owner = OwnerRef;
     }
 }
@@ -91,24 +109,19 @@ bool UGene::CheckGenesRequiredToWork()
 {
     int32 RequredGenesCount = 0;
 
-    if (OwnerComponents)
+    if (OwnerGenomeComponent)
     {
-        UGenomeComponent* GenomeComponent = OwnerComponents->GetGenomeComponent();
-
-        if (GenomeComponent)
+        for (auto Gene : OwnerGenomeComponent->GetGenome())
         {
-            for (auto Gene : GenomeComponent->GetGenome())
+            if (Gene)
             {
-                if (Gene)
+                for (auto RequiredGen : GenesRequiredToWork)
                 {
-                    for (auto RequiredGen : GenesRequiredToWork)
+                    if (RequiredGen->GetClass() == Gene->GetClass())
                     {
-                        if (RequiredGen->GetClass() == Gene->GetClass())
-                        {
-                            RequredGenesCount += 1;
-                        }
-                    }
-                }
+                        RequredGenesCount += 1;
+                     }
+                 }
             }
         }
     }
