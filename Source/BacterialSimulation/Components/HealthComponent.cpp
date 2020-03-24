@@ -47,6 +47,8 @@ void UHealthComponent::RemoveHealth(float Damage)
 		OnDeath.Broadcast();
 	}
 
+	OnHealthChanged.Broadcast(HealthCurrent, HealthMax);
+
 	StartHealthRegeneration();
 }
 
@@ -91,6 +93,8 @@ void UHealthComponent::AddHealth(float Heal)
 	{
 		HealthCurrent = HealthMax;
 	}
+
+	OnHealthChanged.Broadcast(HealthCurrent, HealthMax);
 }
 
 void UHealthComponent::StartStarving() 

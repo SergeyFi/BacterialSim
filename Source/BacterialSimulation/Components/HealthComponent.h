@@ -8,6 +8,8 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDeathDelegate);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FHealthDelegate, float, HealthCurrent, float, HealthMax);
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BACTERIALSIMULATION_API UHealthComponent : public UActorComponent
 {
@@ -63,6 +65,8 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FDeathDelegate OnDeath;
+
+	FHealthDelegate OnHealthChanged;
 
 	UFUNCTION()
 	void StartStarving();
