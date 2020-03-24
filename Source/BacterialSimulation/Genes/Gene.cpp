@@ -29,6 +29,14 @@ void UGene::Mutate_Implementation()
     
 }
 
+void UGene::ActivateGene_Implementation() 
+{  
+}
+
+void UGene::DeactivateGene_Implementation() 
+{
+}
+
 int32 UGene::GetGeneLength() 
 {
     return GeneLength;
@@ -50,6 +58,8 @@ void UGene::ActivateGene()
         StartGeneCicle();
     }
 
+    ActivateGene_Implementation();
+
     bIsActive = true;
 }
 
@@ -59,6 +69,8 @@ void UGene::DeactivateGene()
     {
         StopGeneCicle();
     }
+
+    DeactivateGene_Implementation();
 
     bIsActive = false;
 }

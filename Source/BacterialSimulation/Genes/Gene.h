@@ -57,6 +57,10 @@ protected:
 
 	virtual void Mutate_Implementation();
 
+	virtual void ActivateGene_Implementation();
+
+	virtual void DeactivateGene_Implementation();
+
 	FTimerHandle GeneCicleTimer;
 
 public:
@@ -69,9 +73,9 @@ public:
 
 	void Init(class AActor* OwnerRef);
 
-	virtual void ActivateGene();
+	void ActivateGene();
 
-	virtual void DeactivateGene();
+	void DeactivateGene();
 
 	bool IsActive();
 };
