@@ -50,4 +50,10 @@ public:
 	void Mutate();
 
 	const TArray<class UGene*>& GetGenome();
+
+	void TransferGenesToInheritor(AActor* Inheritor);
+
+	void AddNewGene(class UGene* NewGene);
+
+	void ClearGenome();
 };

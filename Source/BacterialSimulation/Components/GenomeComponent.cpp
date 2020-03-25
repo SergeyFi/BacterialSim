@@ -4,6 +4,9 @@
 #include "GenomeComponent.h"
 #include "BacterialSimulation/Genes/Gene.h"
 
+#include "BacterialSimulation/Interfaces/GenomeComponentInterface.h"
+#include "BacterialSimulation/Components/GenomeComponent.h"
+
 // Sets default values for this component's properties
 UGenomeComponent::UGenomeComponent()
 {
@@ -121,4 +124,59 @@ void UGenomeComponent::Mutate()
 const TArray<class UGene*>& UGenomeComponent::GetGenome()
 {
 	return Genome;
+}
+
+void UGenomeComponent::TransferGenesToInheritor(AActor* Inheritor) 
+{
+	if (Inheritor)
+	{
+		auto InheritorGeneComponentInterface = Cast<IGenomeComponentInterface>(Inheritor);
+		if (InheritorGeneComponentInterface)
+		{
+			UGenomeComponent* InheritorGenomeComponent = InheritorGeneComponentInterface->GetGenomeComponent();
+			if (InheritorGenomeComponent)
+			{
+				InheritorGenomeComponent->ClearGenome();
+
+				for (auto Gene : Genome)
+				{
+					if (Gene)
+					{
+						UGene* GeneCopy = DuplicateObject<UGene>(Gene, this);
+					
+						if (GeneCopy->IsActive())
+						{
+							GeneCopy->DeactivateGene();
+							GeneCopy->Init(Inheritor);
+							GeneCopy->ActivateGene();
+						}
+
+						InheritorGenomeComponent->AddNewGene(GeneCopy);
+					}
+				}
+			}
+		}
+	}
+}
+
+void UGenomeComponent::AddNewGene(class UGene* NewGene) 
+{
+	if (NewGene)
+	{
+		Genome.Add(NewGene);
+	}
+}
+
+void UGenomeComponent::ClearGenome() 
+{
+	for (auto Gene : Genome)
+	{
+		if (Gene)
+		{
+			Gene->DeactivateGene();
+			Gene->ConditionalBeginDestroy();
+		}
+	}
+
+	Genome.Empty();
 }
