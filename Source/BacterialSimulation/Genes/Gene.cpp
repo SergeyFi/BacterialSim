@@ -18,7 +18,8 @@
 UGene::UGene() 
 {
     GeneCiclePeriod = 1.0f;
-    GeneShutdownChance = 0.1f;
+    GeneDeactivationChance = 0.1f;
+    GeneActivationChance = 0.1f;
     bCanBeDeactivated = true;
 }
 
@@ -26,7 +27,7 @@ void UGene::Mutate()
 {
     if (bCanBeDeactivated)
     {
-        GeneChangeStateChance();
+        GeneChangeActivityChance();
     }
 
     Mutate_Implementation();
@@ -158,14 +159,20 @@ void UGene::StopGeneCicle()
     }
 }
 
-void UGene::GeneChangeStateChance() 
+void UGene::GeneChangeActivityChance() 
 {
-    if (FMath::RandRange(0.0f, 1.0f) < GeneShutdownChance)
+    if (bIsActive)
     {
-        DeactivateGene();
+        if (FMath::RandRange(0.0f, 1.0f) < GeneDeactivationChance)
+        {
+            DeactivateGene();
+        }
     }
-    else if (!bIsActive)
+    else 
     {
-        ActivateGene();
+        if (FMath::RandRange(0.0f, 1.0f) < GeneActivationChance)
+        {
+            ActivateGene();
+        }
     }
 }

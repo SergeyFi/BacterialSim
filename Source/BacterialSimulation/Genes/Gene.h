@@ -25,7 +25,7 @@ private:
 
 	void StopGeneCicle();
 
-	void GeneChangeStateChance();
+	void GeneChangeActivityChance();
 
 
 protected:
@@ -34,7 +34,10 @@ protected:
 	int32 GeneLength;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
-	float GeneShutdownChance;
+	float GeneDeactivationChance;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	float GeneActivationChance;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	TArray<TSubclassOf<UGene>> GenesRequiredToWork;
