@@ -8,6 +8,9 @@
 #include "BacterialSimulation/Components/EnergyComponent.h"
 #include "BacterialSimulation/Components/HealthComponent.h"
 
+#include "BacterialSimulation/Interfaces/EnergyComponentInterface.h"
+#include "BacterialSimulation/Interfaces/HealthComponentInterface.h"
+
 //#include "DrawDebugHelpers.h"
 
 #include "GameFramework/Actor.h"
@@ -17,7 +20,8 @@ UGeneBinaryFission::UGeneBinaryFission()
 {
     MinimumHealthToFission = 90.0f;
     MinimumEnergyToFission = 90.0f;
-    EnergyWasteOnFission = 0.0f;
+    EnergyWasteOnFission = 50.0f;
+    HealthWasteOnFission = 50.0f;
 
     bNeedGeneCicle = true;
 }
@@ -115,15 +119,16 @@ void UGeneBinaryFission::SpawnOwnerInheritor(FVector SpawnLocation)
         FTransform SpawnTransform;
         SpawnTransform.SetLocation(SpawnLocation);
     
-        World->SpawnActor<AActor>(Owner->GetClass(), SpawnTransform, SpawnParams);
+        TransferResourcesToInheritor(World->SpawnActor<AActor>(Owner->GetClass(), SpawnTransform, SpawnParams));
     }
 }
 
 void UGeneBinaryFission::ResourceWasteOnFission() 
 {
-    if (OwnerEnergyComponent)
+    if (OwnerEnergyComponent && OwnerHealthComponent)
     {
         OwnerEnergyComponent->RemoveEnergy(EnergyWasteOnFission);
+        OwnerHealthComponent->RemoveHealth(HealthWasteOnFission);
     }
 }
 
@@ -136,4 +141,35 @@ void UGeneBinaryFission::MutateMinimunEnergyHealth()
 {
     MinimumHealthToFission += FMath::RandRange(-1.0f, 1.0f);
     MinimumEnergyToFission += FMath::RandRange(-1.0f, 1.0f);
+
+    EnergyWasteOnFission += FMath::RandRange(-1.0f, 1.0f);
+    HealthWasteOnFission += FMath::RandRange(-1.0f, 1.0f);
+}
+
+void UGeneBinaryFission::TransferResourcesToInheritor(AActor* Inheritor) 
+{
+    if (Inheritor)
+    {
+        auto EnergyComponentInterface = Cast<IEnergyComponentInterface>(Inheritor);
+        UEnergyComponent* InheritorEnergyComponent = nullptr;
+        
+        if (EnergyComponentInterface) InheritorEnergyComponent = EnergyComponentInterface->GetEnergyComponent();
+
+        if (InheritorEnergyComponent && OwnerEnergyComponent)
+        {
+            InheritorEnergyComponent->ResetEnergy();
+            InheritorEnergyComponent->AddEnergy(EnergyWasteOnFission);
+        }
+
+        auto HealthComponentInterface = Cast<IHealthComponentInterface>(Inheritor);
+        UHealthComponent* InheritorHealthComponent = nullptr;
+        
+        if (HealthComponentInterface) InheritorHealthComponent = HealthComponentInterface->GetHealthComponent();
+
+        if (InheritorHealthComponent && OwnerHealthComponent)
+        {
+            InheritorHealthComponent->ResetHealth();
+            InheritorHealthComponent->AddHealth(HealthWasteOnFission);
+        }
+    }
 }

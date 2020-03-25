@@ -17,16 +17,21 @@ private:
 
 	void MutateMinimunEnergyHealth();
 
+	void TransferResourcesToInheritor(AActor* Inheritor);
+
 protected:
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene|BinaryFission")
 	float MinimumHealthToFission;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene|BinaryFission")
 	float MinimumEnergyToFission;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene|BinaryFission")
 	float EnergyWasteOnFission;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene|BinaryFission")
+	float HealthWasteOnFission;
 
 	virtual void GeneCicle() override;
 
