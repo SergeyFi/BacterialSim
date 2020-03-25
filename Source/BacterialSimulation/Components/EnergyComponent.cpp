@@ -60,6 +60,11 @@ float UEnergyComponent::GetEnergyCurrent()
 	return EnergyCurrent;
 }
 
+void UEnergyComponent::ResetEnergy() 
+{
+	EnergyCurrent = 0.0f;
+}
+
 void UEnergyComponent::RemoveEnergy(float EnergyDamage) 
 {
 	EnergyCurrent -= EnergyDamage;

@@ -45,6 +45,8 @@ public:
 
 	float GetEnergyCurrent();
 
+	void ResetEnergy();
+
 	UPROPERTY()
 	FEnergyDelegate OnEnergyStarvingStart;
 

@@ -78,5 +78,7 @@ public:
 	class UEnergyComponent* EnergyComponent;
 
 	float GetHealthCurrent();
+
+	void ResetHealth();
 	
 };

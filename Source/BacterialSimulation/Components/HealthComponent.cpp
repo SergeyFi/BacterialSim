@@ -124,3 +124,8 @@ float UHealthComponent::GetHealthCurrent()
 {
 	return HealthCurrent;
 }
+
+void UHealthComponent::ResetHealth() 
+{
+	HealthCurrent = 0.0f;
+}
