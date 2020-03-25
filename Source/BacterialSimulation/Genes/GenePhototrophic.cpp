@@ -19,7 +19,7 @@ UGenePhototrophic::UGenePhototrophic()
     EnergyGenerationMax = 3.0f;
 }
 
-void UGenePhototrophic::GeneCicle_Implementation() 
+void UGenePhototrophic::GeneCicle() 
 {
     if (OwnerEnergyComponent)
     {

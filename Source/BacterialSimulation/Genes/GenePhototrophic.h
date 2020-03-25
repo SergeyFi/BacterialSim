@@ -24,11 +24,11 @@ protected:
 
 	virtual void DeactivateGene_Implementation();
 
+	virtual void GeneCicle() override;
+
+	virtual void Mutate_Implementation() override;
+
 public:
 
 	UGenePhototrophic();
-
-	virtual void GeneCicle_Implementation() override;
-
-	virtual void Mutate_Implementation() override;
 };

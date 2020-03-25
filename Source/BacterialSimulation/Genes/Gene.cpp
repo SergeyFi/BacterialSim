@@ -139,11 +139,11 @@ void UGene::StartGeneCicle()
     
     if (World)
     {
-        World->GetTimerManager().SetTimer(GeneCicleTimer, this, &UGene::GeneCicle_Implementation, GeneCiclePeriod, true);
+        World->GetTimerManager().SetTimer(GeneCicleTimer, this, &UGene::GeneCicle, GeneCiclePeriod, true);
     }
 }
 
-void UGene::GeneCicle_Implementation() 
+void UGene::GeneCicle() 
 {
     
 }

@@ -24,7 +24,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	float EnergyWasteOnFission;
 
-	virtual void GeneCicle_Implementation() override;
+	virtual void GeneCicle() override;
 
 	void ConditionCheck();
 

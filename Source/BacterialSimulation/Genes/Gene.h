@@ -65,7 +65,7 @@ protected:
 
 	bool CheckGenesRequiredToWork();
 
-	virtual void GeneCicle_Implementation();
+	virtual void GeneCicle();
 
 	virtual void Mutate_Implementation();
 

@@ -22,7 +22,7 @@ UGeneBinaryFission::UGeneBinaryFission()
     bNeedGeneCicle = true;
 }
 
-void UGeneBinaryFission::GeneCicle_Implementation() 
+void UGeneBinaryFission::GeneCicle() 
 {
     ConditionCheck();
 }
