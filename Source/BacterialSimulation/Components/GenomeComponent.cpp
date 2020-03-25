@@ -20,10 +20,6 @@ UGenomeComponent::UGenomeComponent()
 void UGenomeComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
-	AddBaseGenes();
-
-	ActivateGenes();
 }
 
 void UGenomeComponent::AddNewRandomGene() 
@@ -136,8 +132,6 @@ void UGenomeComponent::TransferGenesToInheritor(AActor* Inheritor)
 			UGenomeComponent* InheritorGenomeComponent = InheritorGeneComponentInterface->GetGenomeComponent();
 			if (InheritorGenomeComponent)
 			{
-				InheritorGenomeComponent->ClearGenome();
-
 				for (auto Gene : Genome)
 				{
 					if (Gene)
@@ -165,18 +159,4 @@ void UGenomeComponent::AddNewGene(class UGene* NewGene)
 	{
 		Genome.Add(NewGene);
 	}
-}
-
-void UGenomeComponent::ClearGenome() 
-{
-	for (auto Gene : Genome)
-	{
-		if (Gene)
-		{
-			Gene->DeactivateGene();
-			Gene->ConditionalBeginDestroy();
-		}
-	}
-
-	Genome.Empty();
 }

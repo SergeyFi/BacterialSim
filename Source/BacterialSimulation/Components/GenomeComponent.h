@@ -39,10 +39,6 @@ protected:
 
 	class UGene* FindGeneInGenome(int32 Length);
 
-	void AddBaseGenes();
-
-	void ActivateGenes();
-
 public:
 
 	int32 GetGenomeLength();
@@ -55,5 +51,7 @@ public:
 
 	void AddNewGene(class UGene* NewGene);
 
-	void ClearGenome();
+	void AddBaseGenes();
+
+	void ActivateGenes();
 };

@@ -5,7 +5,8 @@
 
 #include "Engine/World.h"
 
-#include "BacterialSimulation/Environment/Environment.h"
+#include "BacterialSimulation/Interfaces/GenomeComponentInterface.h"
+#include "BacterialSimulation/Components/GenomeComponent.h"
 
 // Sets default values
 AObjectSpawner::AObjectSpawner()
@@ -54,7 +55,21 @@ void AObjectSpawner::SpawnObjects()
 					SpawnTransform.SetScale3D(FVector(1.0f, 1.0f, 1.0f));
 					SpawnTransform.SetRotation(FQuat(FRotator(0.0f, FMath::RandRange(0.0, 360.0f), 0.0f)));
 
-					World->SpawnActor<AActor>(SpawnConfiguration.ActorClass, SpawnTransform, SpawnParams);
+					AActor* Actor = World->SpawnActor<AActor>(SpawnConfiguration.ActorClass, SpawnTransform, SpawnParams);
+
+					auto GenomeComponentInterface = Cast<IGenomeComponentInterface>(Actor);
+
+					if (GenomeComponentInterface)
+					{
+						if (GenomeComponentInterface->GetGenomeComponent())
+						{
+							GenomeComponentInterface->GetGenomeComponent()->AddBaseGenes();
+							GenomeComponentInterface->GetGenomeComponent()->ActivateGenes();
+
+						}
+					}
+
+
 				}
 			}
 		}
