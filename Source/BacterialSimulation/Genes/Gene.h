@@ -27,6 +27,8 @@ private:
 
 	void GeneChangeActivityChance();
 
+	void MutateActivationDeactivation();
+
 
 protected:
 

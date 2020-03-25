@@ -30,6 +30,8 @@ void UGene::Mutate()
         GeneChangeActivityChance();
     }
 
+    MutateActivationDeactivation();
+
     Mutate_Implementation();
 }
 
@@ -175,4 +177,11 @@ void UGene::GeneChangeActivityChance()
             ActivateGene();
         }
     }
+}
+
+void UGene::MutateActivationDeactivation() 
+{
+    GeneDeactivationChance += FMath::RandRange(-0.02f, 0.02f);
+
+    GeneActivationChance += FMath::RandRange(-0.02f, 0.02f);
 }
