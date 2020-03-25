@@ -126,3 +126,14 @@ void UGeneBinaryFission::ResourceWasteOnFission()
         OwnerEnergyComponent->RemoveEnergy(EnergyWasteOnFission);
     }
 }
+
+void UGeneBinaryFission::Mutate_Implementation() 
+{
+    MutateMinimunEnergyHealth();
+}
+
+void UGeneBinaryFission::MutateMinimunEnergyHealth() 
+{
+    MinimumHealthToFission += FMath::RandRange(-1.0f, 1.0f);
+    MinimumEnergyToFission += FMath::RandRange(-1.0f, 1.0f);
+}

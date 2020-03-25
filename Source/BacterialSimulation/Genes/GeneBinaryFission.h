@@ -13,6 +13,10 @@ class BACTERIALSIMULATION_API UGeneBinaryFission : public UGene
 {
 	GENERATED_BODY()
 
+private:
+
+	void MutateMinimunEnergyHealth();
+
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
@@ -35,6 +39,8 @@ protected:
 	void SpawnOwnerInheritor(FVector SpawnLocation);
 
 	virtual void ResourceWasteOnFission();
+
+	virtual void Mutate_Implementation() override;
 
 public:
 
