@@ -7,6 +7,8 @@
 
 #include "BacterialSimulation/Components/EnergyComponent.h"
 
+#include "Kismet/KismetMathLibrary.h"
+
 UGeneMovement::UGeneMovement() 
 {
     bNeedGeneCicle = false;
@@ -15,6 +17,7 @@ UGeneMovement::UGeneMovement()
     EnergyWasteOnMovement = 0.2f;
     MinimumEnergyToWork = 50.0f;
     EnvironmentRatioResistance = 1.0f;
+    RotationTimeOut = 1.0f;
 }
 
 void UGeneMovement::Tick(float DeltaTime) 
@@ -37,12 +40,12 @@ void UGeneMovement::MoveForward(float DeltaTime)
 {
     FVector NewLocation = Owner->GetActorLocation() + (Owner->GetActorForwardVector() * MovementSpeed * DeltaTime);
 
-    //FHitResult* HitResult;
-    bool bIsHit = Owner->SetActorLocation(NewLocation, true);
+    FHitResult HitResult;
+    bool bIsHit = Owner->SetActorLocation(NewLocation, true, &HitResult);
 
     if (!bIsHit)
     {
-        RandomDirectionChange();
+        SetOppositeDirection(HitResult.ImpactPoint);
     }
 }
 
@@ -54,12 +57,18 @@ void UGeneMovement::ResourcesWasteOnMovement(float DeltaTime)
     }
 }
 
-void UGeneMovement::RandomDirectionChange() 
+void UGeneMovement::SetRandomDirection() 
 {
     if (Owner && bIsActive)
     {
         Owner->SetActorRotation(FRotator(0.0f, FMath::RandRange(0.0f, 360.0f), 90.0f));
     }
+}
+
+void UGeneMovement::SetOppositeDirection(FVector Location) 
+{
+    FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(Owner->GetActorLocation(), Location);
+    Owner->SetActorRotation(FRotator(0.0f, Rotation.Yaw - 180.0f, 90.0f));
 }
 
 void UGeneMovement::Mutate_Implementation() 

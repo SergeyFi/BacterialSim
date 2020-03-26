@@ -26,12 +26,17 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gene|Movement")
 	float MinimumEnergyToWork;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gene|Movement")
+	float RotationTimeOut;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gene|Movement")
 	bool NeedMovement;
 
 	void MoveForward(float DeltaTime);
 
 	void ResourcesWasteOnMovement(float DeltaTime);
+
+	void FindOppositeRotation();
 
 	void Tick(float DeltaTime) override;
 
@@ -41,6 +46,8 @@ public:
 
 	UGeneMovement();
 
-	void RandomDirectionChange();
+	void SetRandomDirection();
+
+	void SetOppositeDirection(FVector Location);
 	
 };
