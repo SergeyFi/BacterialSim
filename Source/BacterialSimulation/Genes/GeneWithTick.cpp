@@ -34,3 +34,8 @@ TStatId UGeneWithTick::GetStatId() const
 {
     return TStatId();
 }
+
+UWorld* UGeneWithTick::GetTickableGameObjectWorld() const 
+{
+    return GetOuter()->GetWorld();
+}

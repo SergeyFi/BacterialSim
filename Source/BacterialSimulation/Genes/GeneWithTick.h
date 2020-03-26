@@ -15,11 +15,11 @@ class BACTERIALSIMULATION_API UGeneWithTick : public UGene, public FTickableGame
 {
 	GENERATED_BODY()
 
-private:
-
-	bool bIsCreateOnRunning;
-
 protected:
+
+public:
+
+	UGeneWithTick();
 
 	virtual void Tick(float DeltaTime) override;
 
@@ -31,8 +31,6 @@ protected:
 
 	virtual TStatId GetStatId() const override;
 
-public:
-
-	UGeneWithTick();
+	virtual UWorld* GetTickableGameObjectWorld() const override;
 	
 };
