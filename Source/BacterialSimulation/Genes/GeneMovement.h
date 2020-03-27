@@ -42,6 +42,8 @@ protected:
 
 	void Mutate_Implementation() override;
 
+	virtual void GeneCicle() override;
+
 public:
 
 	UGeneMovement();
