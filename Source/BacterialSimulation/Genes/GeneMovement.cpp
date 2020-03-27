@@ -22,16 +22,13 @@ UGeneMovement::UGeneMovement()
 
 void UGeneMovement::Tick(float DeltaTime) 
 {
-    if (bIsActive)
+    if (bIsActive && NeedMovement && Owner)
     {
-        if (OwnerEnergyComponent)
+        if (OwnerEnergyComponent && OwnerEnergyComponent->GetEnergyCurrent() >= MinimumEnergyToWork)
         {
-            if (NeedMovement && Owner)
-            {
-                MoveForward(DeltaTime);
+            MoveForward(DeltaTime);
 
-                ResourcesWasteOnMovement(DeltaTime);
-            }
+            ResourcesWasteOnMovement(DeltaTime);
         }
     }
 }
@@ -93,6 +90,6 @@ void UGeneMovement::SetOppositeDirection(FVector Location)
 
 void UGeneMovement::Mutate_Implementation() 
 {
-    MovementSpeed += FMath::RandRange(-5.0f, 5.0f);
-    MinimumEnergyToWork += FMath::RandRange(-1.0f, 1.0f);
+    MovementSpeed += FMath::Clamp(FMath::RandRange(-5.0f, 5.0f), 0.0f, 1000.0f);
+    MinimumEnergyToWork += FMath::Clamp(FMath::RandRange(-1.0f, 1.0f),0.0f, 100.0f);
 }
