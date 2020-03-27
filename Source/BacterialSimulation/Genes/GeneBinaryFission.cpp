@@ -119,6 +119,7 @@ void UGeneBinaryFission::SpawnOwnerInheritor(FVector SpawnLocation)
     
         FTransform SpawnTransform;
         SpawnTransform.SetLocation(SpawnLocation);
+        SpawnTransform.SetRotation(FQuat(FRotator(0.0f, FMath::RandRange(0.0, 360.0f), 0.0f)));
 
         AActor* Inheritor = World->SpawnActor<AActor>(Owner->GetClass(), SpawnTransform, SpawnParams);
     
