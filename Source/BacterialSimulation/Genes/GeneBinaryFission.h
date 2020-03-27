@@ -43,6 +43,8 @@ protected:
 
 	void SpawnOwnerInheritor(FVector SpawnLocation);
 
+	void TransferGeneToInheritor(AActor* Inheritor);
+
 	virtual void ResourceWasteOnFission();
 
 	virtual void Mutate_Implementation() override;

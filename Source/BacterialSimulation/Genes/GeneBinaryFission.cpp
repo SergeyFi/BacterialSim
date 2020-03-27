@@ -7,6 +7,7 @@
 
 #include "BacterialSimulation/Components/EnergyComponent.h"
 #include "BacterialSimulation/Components/HealthComponent.h"
+#include "BacterialSimulation/Components/GenomeComponent.h"
 
 #include "BacterialSimulation/Interfaces/EnergyComponentInterface.h"
 #include "BacterialSimulation/Interfaces/HealthComponentInterface.h"
@@ -118,8 +119,20 @@ void UGeneBinaryFission::SpawnOwnerInheritor(FVector SpawnLocation)
     
         FTransform SpawnTransform;
         SpawnTransform.SetLocation(SpawnLocation);
+
+        AActor* Inheritor = World->SpawnActor<AActor>(Owner->GetClass(), SpawnTransform, SpawnParams);
     
-        TransferResourcesToInheritor(World->SpawnActor<AActor>(Owner->GetClass(), SpawnTransform, SpawnParams));
+        TransferResourcesToInheritor(Inheritor);
+
+        TransferGeneToInheritor(Inheritor);
+    }
+}
+
+void UGeneBinaryFission::TransferGeneToInheritor(AActor* Inheritor) 
+{
+    if (OwnerGenomeComponent)
+    {
+        OwnerGenomeComponent->TransferGenesToInheritor(Inheritor);
     }
 }
 
