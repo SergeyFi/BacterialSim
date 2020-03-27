@@ -39,32 +39,6 @@ void UGeneMovement::MoveForward(float DeltaTime)
 
     FHitResult HitResult;
     bool bIsHit = !Owner->SetActorLocation(NewLocation, false, &HitResult);
-
-    // Rotation timeout
-    static bool bNeedRotationTimeOut = false;
-    static float RotationTimeOutCurrent = 0.0f;
-
-    if (bNeedRotationTimeOut)
-    {
-        RotationTimeOutCurrent += 1.0f * DeltaTime;
-
-        if (RotationTimeOutCurrent > RotationTimeOut)
-        {
-            RotationTimeOutCurrent = 0.0f;
-            bNeedRotationTimeOut = false;
-        }
-    }
-
-    //if (!bIsHit)
-    //{
-      //  if (!bNeedRotationTimeOut)
-       // {
-            //SetOppositeDirection(HitResult.ImpactPoint);
-            //SetRandomDirection();
-
-        //    bNeedRotationTimeOut = true;
-       // }
-    //}
 }
 
 void UGeneMovement::ResourcesWasteOnMovement(float DeltaTime) 
