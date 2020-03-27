@@ -24,13 +24,13 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
 	TArray<class UEnvironmentEffect*> EnvironmentEffects;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Environment")
 	TArray<TSubclassOf<class UEnvironmentEffect>> EnvironmentEffectClasses;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
 	TArray<class UEnvironmentElement*> EnvironmentElements;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Environment")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Environment")
 	TArray<TSubclassOf<class UEnvironmentElement>> EnvironmentElementClasses;
 
 	void UpdateEnvironmentEffects();
