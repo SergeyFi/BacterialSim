@@ -41,11 +41,31 @@ void UGeneMovement::MoveForward(float DeltaTime)
     FVector NewLocation = Owner->GetActorLocation() + (Owner->GetActorForwardVector() * MovementSpeed * DeltaTime);
 
     FHitResult HitResult;
-    bool bIsHit = Owner->SetActorLocation(NewLocation, true, &HitResult);
+    bool bIsNotHit = Owner->SetActorLocation(NewLocation, true, &HitResult);
 
-    if (!bIsHit)
+    // Rotation timeout
+    static bool bNeedRotationTimeOut = false;
+    static float RotationTimeOutCurrent = 0.0f;
+
+    if (bNeedRotationTimeOut)
     {
-        SetOppositeDirection(HitResult.ImpactPoint);
+        RotationTimeOutCurrent += 1.0f * DeltaTime;
+
+        if (RotationTimeOutCurrent > RotationTimeOut)
+        {
+            RotationTimeOutCurrent = 0.0f;
+            bNeedRotationTimeOut = false;
+        }
+    }
+
+    if (!bIsNotHit)
+    {
+        if (!bNeedRotationTimeOut)
+        {
+            SetOppositeDirection(HitResult.ImpactPoint);
+        }
+
+        bNeedRotationTimeOut = true;
     }
 }
 
