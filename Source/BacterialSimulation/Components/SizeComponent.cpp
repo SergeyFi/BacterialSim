@@ -42,7 +42,7 @@ void USizeComponent::SizeDependOnHealth(float HealthCurrent, float HealthMax)
 
 	if (Ratio > 0.2f)
 	{
-		SetOwnerSize(GetOwnerSize() * Ratio);
+		//SetOwnerSize(GetOwnerSize() * Ratio);
 	}
 }
 
