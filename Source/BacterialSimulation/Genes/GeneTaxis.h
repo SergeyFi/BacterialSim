@@ -11,5 +11,19 @@ UCLASS()
 class BACTERIALSIMULATION_API UGeneTaxis : public UGene
 {
 	GENERATED_BODY()
+
+protected:
+
+	virtual void GeneCicle() override;
+
+	class USphereComponent* SphereComponent;
+
+	virtual void ActivateGene_Implementation() override;
+
+	void AttachSphereComponentToOwner();
+
+public:
+
+	UGeneTaxis();
 	
 };
