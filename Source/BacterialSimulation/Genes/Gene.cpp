@@ -90,15 +90,15 @@ void UGene::ActivateGene()
 
 void UGene::DeactivateGene() 
 {
-    if (bNeedGeneCicle)
-    {
-        StopGeneCicle();
-    }
-
-    DeactivateGene_Implementation();
-
     if (bCanBeDeactivated)
     {
+        if (bNeedGeneCicle)
+        {
+            StopGeneCicle();
+        }
+
+        DeactivateGene_Implementation();
+        
         bIsActive = false;
     }
 }
