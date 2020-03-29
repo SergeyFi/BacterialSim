@@ -37,3 +37,16 @@ void UGeneTaxis::AttachSphereComponentToOwner()
 
     }
 }
+
+void UGeneTaxis::Mutate_Implementation() 
+{
+    MutateAttractants();
+}
+
+void UGeneTaxis::MutateAttractants() 
+{
+    //for (auto Attractant : Attractants)
+    //{
+    //    Attractant.Mutate();
+    //}
+}
