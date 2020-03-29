@@ -142,7 +142,13 @@ void UGenomeComponent::TransferGenesToInheritor(AActor* Inheritor)
 						{
 							GeneCopy->DeactivateGene();
 							GeneCopy->Init(Inheritor);
+							GeneCopy->Mutate();
 							GeneCopy->ActivateGene();
+						}
+						else 
+						{
+							GeneCopy->Init(Inheritor);
+							GeneCopy->Mutate();
 						}
 
 						InheritorGenomeComponent->AddNewGene(GeneCopy);
