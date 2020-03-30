@@ -47,9 +47,15 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gene|Taxis")
 	TArray<FAttractantStruct> Attractants;
 
-	virtual void GeneCicle() override;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gene|Taxis")
+	float SearchPeriodTimeout;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Gene")
+	class UGeneMovement* GeneMovement;
 
 	class USphereComponent* SphereComponent;
+
+	virtual void GeneCicle() override;
 
 	virtual void ActivateGene_Implementation() override;
 

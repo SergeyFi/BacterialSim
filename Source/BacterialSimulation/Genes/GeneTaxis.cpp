@@ -6,22 +6,55 @@
 #include "GameFramework/Actor.h"
 #include "Components/SphereComponent.h"
 #include "BacterialSimulation/Interfaces/AttractantInterface.h"
+#include "BacterialSimulation/Genes/GeneMovement.h"
+#include "BacterialSimulation/Components/GenomeComponent.h"
 #include "GameFramework/Actor.h"
 
 UGeneTaxis::UGeneTaxis() 
 {
     bNeedGeneCicle = true;
-    GeneCiclePeriod = 0.5f;
+    GeneCiclePeriod = 1.0f;
+    SearchPeriodTimeout = 10.0f;
 }
 
 void UGeneTaxis::GeneCicle() 
 {
-    
+    static float LastAttractantSmellStrength = 0.0f;
+    float CurrentAttractantSmell = FindSuitableAttractantSmell();
+
+    if (CurrentAttractantSmell < LastAttractantSmellStrength)
+    {
+        if (GeneMovement)
+        {
+            GeneMovement->SetRandomDirection();
+        }
+    }
+
+    // Search period
+    static float SearchTime = 0.0f;
+    SearchTime += GeneCiclePeriod;
+
+    if (SearchTime >= SearchPeriodTimeout && LastAttractantSmellStrength == 0.0f)
+    {
+        SearchTime = 0.0f;
+
+        if (GeneMovement)
+        {
+            GeneMovement->SetRandomDirection();
+        }
+    }
+
+    LastAttractantSmellStrength = CurrentAttractantSmell;
 }
 
 void UGeneTaxis::ActivateGene_Implementation() 
 {
     AttachSphereComponentToOwner();
+
+    if (Owner && OwnerGenomeComponent)
+    {
+        GeneMovement = Cast<UGeneMovement>(OwnerGenomeComponent->GetGeneByClass(UGeneMovement::StaticClass()));
+    }
 }
 
 void UGeneTaxis::AttachSphereComponentToOwner() 
@@ -41,6 +74,12 @@ void UGeneTaxis::AttachSphereComponentToOwner()
 void UGeneTaxis::Mutate_Implementation() 
 {
     MutateAttractants();
+
+    GeneCiclePeriod += FMath::RandRange(-0.2f, 0.2f);
+    GeneCiclePeriod = FMath::Clamp(GeneCiclePeriod, 0.1f, 50.0f);
+
+    SearchPeriodTimeout += FMath::RandRange(-0.5f, 0.5f);
+    SearchPeriodTimeout = FMath::Clamp(SearchPeriodTimeout, 0.1f, 50.0f);
 }
 
 void UGeneTaxis::MutateAttractants() 
