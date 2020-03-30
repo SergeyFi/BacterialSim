@@ -13,6 +13,10 @@ class BACTERIALSIMULATION_API AMolecule : public AActor, public IAttractantInter
 	GENERATED_BODY()
 
 protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	class UPaperSpriteComponent* PaperSprite;
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
