@@ -14,8 +14,18 @@ struct FAttractantStruct
 
 public:
 
-    //UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=" Attractant")
-    //TSubclassOf<class AAttractant>  Attractant;
+	FAttractantStruct()
+	{
+		AttractantClass = nullptr;
+	}
+
+	FAttractantStruct(UClass*  NewAttractant)
+	{
+		AttractantClass = NewAttractant;
+	}
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=" Attractant")
+    TSubclassOf<class AActor>  AttractantClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=" Attractant")
 	float Sensitivity = 1.0f;
@@ -37,10 +47,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gene|Taxis")
 	TArray<FAttractantStruct> Attractants;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gene|Taxis")
-	//TArray<TSubclassOf<class AAttractant>> AttractantClasses;
-
-
 	virtual void GeneCicle() override;
 
 	class USphereComponent* SphereComponent;
@@ -52,6 +58,12 @@ protected:
 	virtual void Mutate_Implementation();
 
 	void MutateAttractants();
+
+	float FindSuitableAttractantSmell();
+
+	float FindAttractantSensitivity(UClass*  AttractantClass);
+
+	float CalculateAttractantSmellStrength(class AActor* Attractant);
 
 public:
 
