@@ -166,3 +166,17 @@ void UGenomeComponent::AddNewGene(class UGene* NewGene)
 		Genome.Add(NewGene);
 	}
 }
+
+
+UGene* UGenomeComponent::GetGeneByClass(TSubclassOf<UGene> Class) 
+{
+	for (auto Gene : Genome)
+	{
+		if (Gene && Gene->GetClass() == Class)
+		{
+			return Gene;
+		}
+	}
+
+	return nullptr;
+}

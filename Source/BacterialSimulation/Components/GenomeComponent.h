@@ -54,4 +54,6 @@ public:
 	void AddBaseGenes();
 
 	void ActivateGenes();
+
+	class UGene* GetGeneByClass(TSubclassOf<UGene> Class);
 };
