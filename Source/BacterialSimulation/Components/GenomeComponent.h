@@ -55,5 +55,21 @@ public:
 
 	void ActivateGenes();
 
-	class UGene* GetGeneByClass(TSubclassOf<UGene> Class);
+	template <class TGene>
+	TGene* GetGeneByClass(TSubclassOf<UGene> GeneClass)
+	{
+		if (GeneClass)
+		{
+			for (auto Gene : Genome)
+			{
+				if (Gene && Gene->GetClass() == GeneClass)
+				{
+					return Cast<TGene>(Gene);
+				}
+			}
+		}
+
+		return nullptr;
+	}
+	
 };

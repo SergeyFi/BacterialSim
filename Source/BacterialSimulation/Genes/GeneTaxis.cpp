@@ -53,7 +53,8 @@ void UGeneTaxis::ActivateGene_Implementation()
 
     if (Owner && OwnerGenomeComponent)
     {
-        GeneMovement = Cast<UGeneMovement>(OwnerGenomeComponent->GetGeneByClass(UGeneMovement::StaticClass()));
+        //GeneMovement = Cast<UGeneMovement>(OwnerGenomeComponent->GetGeneByClass(UGeneMovement::StaticClass()));
+        GeneMovement = OwnerGenomeComponent->GetGeneByClass<UGeneMovement>(UGeneMovement::StaticClass());
     }
 }
 
