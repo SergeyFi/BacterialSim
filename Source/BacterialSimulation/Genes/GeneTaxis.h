@@ -33,7 +33,7 @@ public:
 	void Mutate()
 	{
 		Sensitivity += FMath::RandRange(-0.1f,0.1f);
-		Sensitivity = FMath::Clamp(Sensitivity, 0.1f,1.0f);
+		Sensitivity = FMath::Clamp(Sensitivity, -1.0f,1.0f);
 	}
 };
 

@@ -22,7 +22,7 @@ void UGeneTaxis::GeneCicle()
     static float LastAttractantSmellStrength = 0.0f;
     float CurrentAttractantSmell = FindSuitableAttractantSmell();
 
-    if (CurrentAttractantSmell < LastAttractantSmellStrength)
+    if (CurrentAttractantSmell < LastAttractantSmellStrength || CurrentAttractantSmell < 0.0f)
     {
         if (GeneMovement)
         {
@@ -53,7 +53,6 @@ void UGeneTaxis::ActivateGene_Implementation()
 
     if (Owner && OwnerGenomeComponent)
     {
-        //GeneMovement = Cast<UGeneMovement>(OwnerGenomeComponent->GetGeneByClass(UGeneMovement::StaticClass()));
         GeneMovement = OwnerGenomeComponent->GetGeneByClass<UGeneMovement>(UGeneMovement::StaticClass());
     }
 }
@@ -113,7 +112,7 @@ float UGeneTaxis::FindSuitableAttractantSmell()
 
                     AttractantScoreCurrent *= SmellStrength;
 
-                    if (AttractantScoreCurrent > AttractantScore)
+                    if (FMath::Abs(AttractantScoreCurrent) > FMath::Abs(AttractantScore))
                     {
                         AttractantScore = AttractantScoreCurrent;
                         SmellStrength = SmellStrengthCurrent;
@@ -137,7 +136,7 @@ float UGeneTaxis::FindAttractantSensitivity(UClass*  AttractantClass)
     }
 
     Attractants.Add(FAttractantStruct(AttractantClass));
-    return 1.0f;
+    return 0.0f;
 }
 
 float UGeneTaxis::CalculateAttractantSmellStrength(AActor* Attractant) 
