@@ -28,9 +28,11 @@ protected:
 
 public:
 
-	void SetOwnerSize(float Size);
+	void SetScale(float Size);
 
-	float GetOwnerSize();
+	float GetScale();
+
+	float GetSize();
 
 	void ShiftOwnerSize(float SizeShift);
 };

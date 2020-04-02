@@ -16,7 +16,7 @@ USizeComponent::USizeComponent()
 
 	InitialSize = 1.0f;
 
-	SetOwnerSize(InitialSize);
+	SetScale(InitialSize);
 
 	if (GetOwner())
 	{
@@ -46,7 +46,7 @@ void USizeComponent::SizeDependOnHealth(float HealthCurrent, float HealthMax)
 	}
 }
 
-void USizeComponent::SetOwnerSize(float Size) 
+void USizeComponent::SetScale(float Size) 
 {
 	if (GetOwner())
 	{
@@ -54,7 +54,7 @@ void USizeComponent::SetOwnerSize(float Size)
 	}
 }
 
-float USizeComponent::GetOwnerSize() 
+float USizeComponent::GetScale() 
 {
 	if (GetOwner())
 	{
@@ -64,11 +64,22 @@ float USizeComponent::GetOwnerSize()
 	return 0.0f;
 }
 
+float USizeComponent::GetSize() 
+{
+	if (GetOwner())
+	{
+		FVector Size = GetOwner()->GetComponentsBoundingBox().GetSize();
+		return Size.X*Size.Z*2.0f;
+	}
+
+	return 0.0f;
+}
+
 void USizeComponent::ShiftOwnerSize(float SizeShift) 
 {
 	if (GetOwner())
 	{
-		SetOwnerSize(GetOwnerSize() - SizeShift);
+		SetScale(GetScale() - SizeShift);
 	}
 }
 
