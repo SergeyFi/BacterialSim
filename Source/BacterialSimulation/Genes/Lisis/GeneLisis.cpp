@@ -8,10 +8,6 @@
 
 #include "GameFramework/Actor.h"
 
-UGeneLisis::UGeneLisis() 
-{
-    
-}
 
 void UGeneLisis::ActivateGene_Implementation() 
 {

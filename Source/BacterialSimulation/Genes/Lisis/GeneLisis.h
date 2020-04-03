@@ -21,8 +21,4 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gene|Lisis")
 	TSubclassOf<class AActor> LisisTarget;
-
-public:
-
-	UGeneLisis();
 };
