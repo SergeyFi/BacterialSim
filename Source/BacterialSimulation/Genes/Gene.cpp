@@ -9,6 +9,7 @@
 #include "BacterialSimulation/Interfaces/HealthComponentInterface.h"
 #include "BacterialSimulation/Interfaces/PaperSpriteInterface.h"
 #include "BacterialSimulation/Interfaces/SizeComponentInterface.h"
+#include "BacterialSimulation/Interfaces/NutrientComponentInterface.h"
 
 #include "BacterialSimulation/Components/GenomeComponent.h"
 
@@ -71,6 +72,9 @@ void UGene::Init(class AActor* OwnerRef)
 
         ISizeComponentInterface* SizeComponentInterace = Cast<ISizeComponentInterface>(OwnerRef);
         if (SizeComponentInterace) OwnerSizeComponent = SizeComponentInterace->GetSizeComponent();
+
+        INutrientComponentInterface* NutrientComponentInterace = Cast<INutrientComponentInterface>(OwnerRef);
+        if (NutrientComponentInterace) OwnerNutrientComponent = NutrientComponentInterace->GetNutrientComponent();
 
         Owner = OwnerRef;
     }

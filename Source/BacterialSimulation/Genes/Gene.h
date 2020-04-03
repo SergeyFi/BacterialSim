@@ -66,6 +66,8 @@ protected:
 
 	class USizeComponent* OwnerSizeComponent;
 
+	class UNutrientsComponent* OwnerNutrientComponent;
+
 	class AActor* Owner;
 
 	bool CheckGenesRequiredToWork();
