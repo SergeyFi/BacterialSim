@@ -38,8 +38,7 @@ void UGeneMovement::MoveForward(float DeltaTime)
 {
     FVector NewLocation = Owner->GetActorLocation() + (Owner->GetActorForwardVector() * MovementSpeed * DeltaTime);
 
-    FHitResult HitResult;
-    bool bIsHit = !Owner->SetActorLocation(NewLocation, false, &HitResult);
+    Owner->SetActorLocation(NewLocation);
 }
 
 void UGeneMovement::ResourcesWasteOnMovement(float DeltaTime) 
