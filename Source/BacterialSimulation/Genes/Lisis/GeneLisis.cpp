@@ -24,6 +24,21 @@ void UGeneLisis::ActivateGene_Implementation()
     }
 }
 
+void UGeneLisis::DeactivateGene_Implementation()
+{
+    if (OwnerGenomeComponent)
+    {
+        auto GeneParitcleDetection = 
+        OwnerGenomeComponent->GetGeneByClass<UGeneParticleDetection>(UGeneParticleDetection::StaticClass());
+
+        if (GeneParitcleDetection)
+        {
+            GeneParitcleDetection->OnParticleDetected.RemoveDynamic(this, &UGeneLisis::Lisis);
+        }
+        
+    }
+}
+
 void UGeneLisis::Lisis(AActor* Target) 
 {
     

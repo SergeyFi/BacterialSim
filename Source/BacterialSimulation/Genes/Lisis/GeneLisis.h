@@ -21,4 +21,6 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gene|Lisis")
 	TSubclassOf<class AActor> LisisTarget;
+
+	virtual void DeactivateGene_Implementation();
 };
