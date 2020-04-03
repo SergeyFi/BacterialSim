@@ -22,7 +22,7 @@ void UGeneParticleDetection::AttachSphereComponentToOwner()
     {
         SphereComponent = NewObject<USphereComponent>(Owner);
         SphereComponent->SetSphereRadius(600.0f);
-        SphereComponent->bHiddenInGame = false;
+        //SphereComponent->bHiddenInGame = false;
         SphereComponent->ShapeColor = FColor::Purple;
 
         SphereComponent->AttachToComponent(Owner->GetRootComponent(), FAttachmentTransformRules::SnapToTargetIncludingScale);
