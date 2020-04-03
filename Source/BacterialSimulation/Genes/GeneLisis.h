@@ -12,6 +12,16 @@ class BACTERIALSIMULATION_API UGeneLisis : public UGene
 {
 	GENERATED_BODY()
 
+protected:
+
+	UFUNCTION()
+	virtual void Lisis(class AActor* Target);
+
+	virtual void ActivateGene_Implementation();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gene|Lisis")
+	TSubclassOf<class AActor> LisisTarget;
+
 public:
 
 	UGeneLisis();
