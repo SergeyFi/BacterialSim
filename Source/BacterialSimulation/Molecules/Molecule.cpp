@@ -5,6 +5,8 @@
 
 #include "PaperSpriteComponent.h"
 
+#include "BacterialSimulation/Nutrients/Nutrient.h"
+
 // Sets default values
 AMolecule::AMolecule()
 {
@@ -27,4 +29,11 @@ void AMolecule::BeginPlay()
 float AMolecule::GetQuantity() 
 {
 	return Quantity;
+}
+
+TArray<TSubclassOf<class UNutrient>> AMolecule::Lisis() 
+{
+	TArray<TSubclassOf<class UNutrient>> Nutrients;
+
+	return Nutrients;
 }
