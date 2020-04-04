@@ -13,6 +13,8 @@ AMolecule::AMolecule()
 
 	PaperSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSprite"));
 	RootComponent = PaperSprite;
+
+	Quantity = 5.0f;
 }
 
 // Called when the game starts or when spawned
@@ -20,4 +22,9 @@ void AMolecule::BeginPlay()
 {
 	Super::BeginPlay();
 
+}
+
+float AMolecule::GetQuantity() 
+{
+	return Quantity;
 }
