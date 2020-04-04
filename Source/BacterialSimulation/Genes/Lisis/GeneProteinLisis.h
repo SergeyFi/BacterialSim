@@ -12,4 +12,7 @@ class BACTERIALSIMULATION_API UGeneProteinLisis : public UGeneLisis
 {
 	GENERATED_BODY()
 	
+protected:
+
+	virtual void Lisis(class AActor* Target) override;
 };

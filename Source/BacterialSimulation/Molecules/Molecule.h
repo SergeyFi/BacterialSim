@@ -28,6 +28,4 @@ public:
 	AMolecule();
 
 	float GetQuantity();
-
-	virtual TArray<TSubclassOf<class UNutrient>> Lisis();
 };

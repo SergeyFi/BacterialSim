@@ -11,9 +11,5 @@ UCLASS()
 class BACTERIALSIMULATION_API AMoleculeProtein : public AMolecule
 {
 	GENERATED_BODY()
-
-public:
-
-	virtual TArray<TSubclassOf<class UNutrient>> Lisis() override;
 	
 };
