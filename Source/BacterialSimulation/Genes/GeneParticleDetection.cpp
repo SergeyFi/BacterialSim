@@ -6,6 +6,7 @@
 #include "Components/SphereComponent.h"
 #include "BacterialSimulation/Components/SizeComponent.h"
 
+
 UGeneParticleDetection::UGeneParticleDetection() 
 {
     
@@ -14,6 +15,12 @@ UGeneParticleDetection::UGeneParticleDetection()
 void UGeneParticleDetection::ActivateGene_Implementation() 
 {
     AttachSphereComponentToOwner();
+}
+
+void UGeneParticleDetection::DeactivateGene_Implementation() 
+{   
+    OnParticleDetected.RemoveAll(this);
+    SphereComponent->DestroyComponent();
 }
 
 void UGeneParticleDetection::AttachSphereComponentToOwner() 
@@ -27,6 +34,7 @@ void UGeneParticleDetection::AttachSphereComponentToOwner()
 
         SphereComponent->AttachToComponent(Owner->GetRootComponent(), FAttachmentTransformRules::SnapToTargetIncludingScale);
         SphereComponent->RegisterComponent();
+        SphereComponent->SetCollisionProfileName(TEXT("OverlapAll"));
         SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &UGeneParticleDetection::OnSphereOverlapBegin);
 
     }

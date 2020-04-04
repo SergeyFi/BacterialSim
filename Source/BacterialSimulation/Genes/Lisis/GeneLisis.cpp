@@ -19,6 +19,7 @@ void UGeneLisis::ActivateGene_Implementation()
         if (GeneParitcleDetection)
         {
             GeneParitcleDetection->OnParticleDetected.AddDynamic(this, &UGeneLisis::Lisis);
+            bIsBindingToParticleDetector = true;
         }
         
     }
@@ -26,7 +27,7 @@ void UGeneLisis::ActivateGene_Implementation()
 
 void UGeneLisis::DeactivateGene_Implementation()
 {
-    if (OwnerGenomeComponent)
+    if (OwnerGenomeComponent && bIsBindingToParticleDetector)
     {
         auto GeneParitcleDetection = 
         OwnerGenomeComponent->GetGeneByClass<UGeneParticleDetection>(UGeneParticleDetection::StaticClass());
@@ -39,7 +40,7 @@ void UGeneLisis::DeactivateGene_Implementation()
     }
 }
 
-void UGeneLisis::Lisis(AActor* Target) 
+void UGeneLisis::Lisis(AActor* DetectedActor) 
 {
     
 }

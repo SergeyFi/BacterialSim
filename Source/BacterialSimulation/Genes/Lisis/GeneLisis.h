@@ -14,8 +14,10 @@ class BACTERIALSIMULATION_API UGeneLisis : public UGene
 
 protected:
 
+	bool bIsBindingToParticleDetector;
+
 	UFUNCTION()
-	virtual void Lisis(class AActor* Target);
+	virtual void Lisis(class AActor* DetectedActor);
 
 	virtual void ActivateGene_Implementation();
 

@@ -14,5 +14,5 @@ class BACTERIALSIMULATION_API UGeneProteinLisis : public UGeneLisis
 	
 protected:
 
-	virtual void Lisis(class AActor* Target) override;
+	virtual void Lisis(class AActor* DetectedActor) override;
 };

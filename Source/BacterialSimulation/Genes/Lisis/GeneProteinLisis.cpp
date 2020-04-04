@@ -8,9 +8,9 @@
 #include "BacterialSimulation/Nutrients/AminoAcid.h"
 
 
-void UGeneProteinLisis::Lisis(class AActor* Target) 
+void UGeneProteinLisis::Lisis(AActor* DetectedActor) 
 {
-    AMoleculeProtein* Protein = Cast<AMoleculeProtein>(Target);
+    AMoleculeProtein* Protein = Cast<AMoleculeProtein>(DetectedActor);
 
     if (Protein)
     {
