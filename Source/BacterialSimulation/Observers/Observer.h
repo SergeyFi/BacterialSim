@@ -19,6 +19,18 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Observer")
+	class UCameraComponent* Camera;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Observer")
+	class UFloatingPawnMovement* PawnMovement;
+
+	void MoveForward(float Value);
+	
+	void MoveRight(float Value);
+
+	void MoveUp(float Value);
+
 public:
 
 	// Called to bind functionality to input
