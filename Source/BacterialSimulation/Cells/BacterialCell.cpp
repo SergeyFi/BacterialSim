@@ -60,7 +60,7 @@ class UPaperSpriteComponent* ABacterialCell::GetPaperSpriteComponent()
 	return PaperSprite;
 }
 
-class UHealthComponent* ABacterialCell::GetHealthComponent() 
+class UHealthComponent* ABacterialCell::GetHealthComponent_Implementation() 
 {
 	return HealthComponent;
 }

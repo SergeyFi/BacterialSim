@@ -24,7 +24,7 @@ USizeComponent::USizeComponent()
 
 		if (HealthComponentIterface)
 		{
-			HealthComponentIterface->GetHealthComponent()->OnHealthChanged.AddDynamic(this, &USizeComponent::SizeDependOnHealth);
+			HealthComponentIterface->GetHealthComponent_Implementation()->OnHealthChanged.AddDynamic(this, &USizeComponent::SizeDependOnHealth);
 		}
 	}
 }

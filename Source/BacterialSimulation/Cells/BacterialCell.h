@@ -56,7 +56,7 @@ public:
 
 	virtual class UPaperSpriteComponent* GetPaperSpriteComponent() override;
 
-	virtual class UHealthComponent* GetHealthComponent() override;
+	class UHealthComponent* GetHealthComponent_Implementation();
 
 	virtual class UEnergyComponent* GetEnergyComponent() override;
 

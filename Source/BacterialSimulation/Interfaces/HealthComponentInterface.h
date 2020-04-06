@@ -21,5 +21,6 @@ class BACTERIALSIMULATION_API IHealthComponentInterface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
-	virtual class UHealthComponent* GetHealthComponent() = 0;
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="HealthComponent")
+	class UHealthComponent* GetHealthComponent();
 };
