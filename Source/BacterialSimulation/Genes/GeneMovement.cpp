@@ -25,25 +25,20 @@ void UGeneMovement::Tick(float DeltaTime)
 {
     if (bIsActive && NeedMovement && Owner)
     {
-        if (OwnerEnergyComponent && OwnerEnergyComponent->GetEnergyCurrent() >= MinimumEnergyToWork)
-        {
-            MoveForward(DeltaTime);
+        MoveForward(DeltaTime);
 
-            ResourcesWasteOnMovement(DeltaTime);
-        }
+        ResourcesWasteOnMovement(DeltaTime);
     }
 }
 
 void UGeneMovement::MoveForward(float DeltaTime) 
 {
-    FVector NewLocation = Owner->GetActorLocation() + (Owner->GetActorForwardVector() * MovementSpeed * DeltaTime);
-
-    Owner->SetActorLocation(NewLocation);
+    Owner->SetActorLocation(Owner->GetActorLocation() + (Owner->GetActorForwardVector() * MovementSpeed * DeltaTime));
 }
 
 void UGeneMovement::ResourcesWasteOnMovement(float DeltaTime) 
 {
-    if (OwnerEnergyComponent)
+    if (OwnerEnergyComponent && OwnerEnergyComponent->GetEnergyCurrent() >= MinimumEnergyToWork)
     {
         OwnerEnergyComponent->RemoveEnergy((EnergyWasteOnMovement + MovementSpeed/100.0f * EnvironmentRatioResistance) * DeltaTime * 0.5f);
     }
