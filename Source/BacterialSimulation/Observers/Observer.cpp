@@ -25,6 +25,13 @@ AObserver::AObserver()
 void AObserver::BeginPlay()
 {
 	Super::BeginPlay();
+
+	auto PlayerController = GetController<APlayerController>();
+
+	if (PlayerController)
+	{
+		PlayerController->bShowMouseCursor = true;
+	}
 		
 }
 
@@ -66,12 +73,9 @@ void AObserver::ClickLeftMB()
 	{
 		FHitResult HitResult;
 
-		bool bIsHit = PlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_WorldDynamic, false, HitResult);
+		PlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
 
-		if (bIsHit)
-		{
-			OnActorClicked.Broadcast(HitResult.GetActor());
-		}
+		OnActorClicked.Broadcast(HitResult.GetActor());
 	}
 }
 
