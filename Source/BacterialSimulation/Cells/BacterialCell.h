@@ -11,12 +11,14 @@
 #include "BacterialSimulation/Interfaces/PaperSpriteInterface.h"
 #include "BacterialSimulation/Interfaces/SizeComponentInterface.h"
 #include "BacterialSimulation/Interfaces/NutrientComponentInterface.h"
+#include "BacterialSimulation/Interfaces/GenerationInterface.h"
 
 #include "BacterialCell.generated.h"
 
 UCLASS()
 class BACTERIALSIMULATION_API ABacterialCell : public AActor, public IEnergyComponentInterface, public IGenomeComponentInterface, 
 public IHealthComponentInterface, public IPaperSpriteInterface, public ISizeComponentInterface, public INutrientComponentInterface
+,public IGenerationInterface
 
 {
 	GENERATED_BODY()
@@ -30,6 +32,9 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void Destroyed() override;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Cell")
+	int32 Generation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	class UPaperSpriteComponent* PaperSprite;
@@ -58,11 +63,15 @@ public:
 
 	class UHealthComponent* GetHealthComponent_Implementation();
 
-	virtual class UEnergyComponent* GetEnergyComponent_Implementation() override;
+	virtual class UEnergyComponent* GetEnergyComponent_Implementation();
 
 	class UGenomeComponent* GetGenomeComponent_Implementation();
 
 	virtual class USizeComponent* GetSizeComponent() override;
 
 	virtual class UNutrientsComponent* GetNutrientComponent() override;
+
+	void SetGeneration_Implementation(int32 ParentGeneration);
+
+	int32 GetGeneration_Implementation();
 };

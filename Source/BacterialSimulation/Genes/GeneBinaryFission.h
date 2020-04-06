@@ -45,6 +45,8 @@ protected:
 
 	void TransferGeneToInheritor(AActor* Inheritor);
 
+	void AddGenerationToInheritor(AActor* Inheritor);
+
 	virtual void ResourceWasteOnFission();
 
 	virtual void Mutate_Implementation() override;

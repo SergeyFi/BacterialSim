@@ -11,6 +11,7 @@
 
 #include "BacterialSimulation/Interfaces/EnergyComponentInterface.h"
 #include "BacterialSimulation/Interfaces/HealthComponentInterface.h"
+#include "BacterialSimulation/Interfaces/GenerationInterface.h"
 
 //#include "DrawDebugHelpers.h"
 
@@ -134,6 +135,17 @@ void UGeneBinaryFission::TransferGeneToInheritor(AActor* Inheritor)
     if (OwnerGenomeComponent)
     {
         OwnerGenomeComponent->TransferGenesToInheritor(Inheritor);
+    }
+}
+
+void UGeneBinaryFission::AddGenerationToInheritor(AActor* Inheritor) 
+{
+    auto OwnerGeneration = Cast<IGenerationInterface>(Owner);
+    auto InheritorGeneration = Cast<IGenerationInterface>(Inheritor);
+
+    if (OwnerGeneration && InheritorGeneration)
+    {
+        InheritorGeneration->SetGeneration_Implementation(InheritorGeneration->GetGeneration_Implementation());
     }
 }
 

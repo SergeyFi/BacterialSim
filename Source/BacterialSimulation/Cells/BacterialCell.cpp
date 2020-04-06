@@ -23,9 +23,7 @@ ABacterialCell::ABacterialCell()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
-	//PaperSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSprite"));
-	//PaperSprite->SetWorldScale3D(FVector(0.1f));
-	//RootComponent = PaperSprite;
+	Generation = 1;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	RootComponent = StaticMesh;
@@ -83,4 +81,14 @@ class USizeComponent* ABacterialCell::GetSizeComponent()
 class UNutrientsComponent* ABacterialCell::GetNutrientComponent() 
 {
 	return NutrientComponent;
+}
+
+void ABacterialCell::SetGeneration_Implementation(int32 ParentGeneration) 
+{
+	Generation = ParentGeneration + 1;
+}
+
+int32 ABacterialCell::GetGeneration_Implementation() 
+{
+	return Generation;
 }
