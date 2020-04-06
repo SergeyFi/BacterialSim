@@ -53,14 +53,14 @@ void UGeneMovement::SetRandomDirection()
 {
     if (Owner && bIsActive)
     {
-        Owner->SetActorRotation(FRotator(0.0f, FMath::RandRange(0.0f, 360.0f), 90.0f));
+        Owner->SetActorRotation(FRotator(0.0f, FMath::RandRange(0.0f, 360.0f), 0.0f));
     }
 }
 
 void UGeneMovement::SetOppositeDirection(FVector Location) 
 {
     FRotator Rotation = UKismetMathLibrary::FindLookAtRotation(Owner->GetActorLocation(), Location);
-    Owner->SetActorRotation(FRotator(0.0f, Rotation.Yaw - 180.0f, 90.0f));
+    Owner->SetActorRotation(FRotator(0.0f, Rotation.Yaw - 180.0f, 0.0f));
 }
 
 void UGeneMovement::Mutate_Implementation() 
