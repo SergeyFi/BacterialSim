@@ -58,7 +58,7 @@ public:
 
 	class UHealthComponent* GetHealthComponent_Implementation();
 
-	virtual class UEnergyComponent* GetEnergyComponent() override;
+	virtual class UEnergyComponent* GetEnergyComponent_Implementation() override;
 
 	class UGenomeComponent* GetGenomeComponent_Implementation();
 

@@ -21,5 +21,6 @@ class BACTERIALSIMULATION_API IEnergyComponentInterface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
-	virtual class UEnergyComponent* GetEnergyComponent() = 0;
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="HealthComponent")
+	class UEnergyComponent* GetEnergyComponent();
 };

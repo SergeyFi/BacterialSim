@@ -65,7 +65,7 @@ class UHealthComponent* ABacterialCell::GetHealthComponent_Implementation()
 	return HealthComponent;
 }
 
-class UEnergyComponent* ABacterialCell::GetEnergyComponent() 
+class UEnergyComponent* ABacterialCell::GetEnergyComponent_Implementation() 
 {
 	return EnergyComponent;
 }

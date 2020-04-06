@@ -62,7 +62,7 @@ void UGene::Init(class AActor* OwnerRef)
         if (HealthComponentInterace) OwnerHealthComponent = HealthComponentInterace->GetHealthComponent_Implementation();
 
         IEnergyComponentInterface* EnergyComponentInterace = Cast<IEnergyComponentInterface>(OwnerRef);
-        if (EnergyComponentInterace) OwnerEnergyComponent = EnergyComponentInterace->GetEnergyComponent();
+        if (EnergyComponentInterace) OwnerEnergyComponent = EnergyComponentInterace->GetEnergyComponent_Implementation();
 
         IGenomeComponentInterface* GenomeComponentInterace = Cast<IGenomeComponentInterface>(OwnerRef);
         if (GenomeComponentInterace) OwnerGenomeComponent = GenomeComponentInterace->GetGenomeComponent_Implementation();
