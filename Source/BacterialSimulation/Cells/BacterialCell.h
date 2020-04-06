@@ -60,7 +60,7 @@ public:
 
 	virtual class UEnergyComponent* GetEnergyComponent() override;
 
-	virtual class UGenomeComponent* GetGenomeComponent() override;
+	class UGenomeComponent* GetGenomeComponent_Implementation();
 
 	virtual class USizeComponent* GetSizeComponent() override;
 

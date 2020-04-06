@@ -61,12 +61,10 @@ void AObjectSpawner::SpawnObjects()
 
 					if (GenomeComponentInterface)
 					{
-						if (GenomeComponentInterface->GetGenomeComponent())
-						{
-							GenomeComponentInterface->GetGenomeComponent()->AddBaseGenes();
-							GenomeComponentInterface->GetGenomeComponent()->ActivateGenes();
+						auto GenomeComponent = GenomeComponentInterface->GetGenomeComponent_Implementation();
 
-						}
+						GenomeComponent->AddBaseGenes();
+						GenomeComponent->ActivateGenes();
 					}
 
 

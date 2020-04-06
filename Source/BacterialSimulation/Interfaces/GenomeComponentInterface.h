@@ -21,5 +21,6 @@ class BACTERIALSIMULATION_API IGenomeComponentInterface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
-	virtual class UGenomeComponent* GetGenomeComponent() = 0;
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="GenomeComponent")
+	class UGenomeComponent* GetGenomeComponent();
 };

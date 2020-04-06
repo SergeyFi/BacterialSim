@@ -65,7 +65,7 @@ void UGene::Init(class AActor* OwnerRef)
         if (EnergyComponentInterace) OwnerEnergyComponent = EnergyComponentInterace->GetEnergyComponent();
 
         IGenomeComponentInterface* GenomeComponentInterace = Cast<IGenomeComponentInterface>(OwnerRef);
-        if (GenomeComponentInterace) OwnerGenomeComponent = GenomeComponentInterace->GetGenomeComponent();
+        if (GenomeComponentInterace) OwnerGenomeComponent = GenomeComponentInterace->GetGenomeComponent_Implementation();
 
         IPaperSpriteInterface* PaperSpriteInterace = Cast<IPaperSpriteInterface>(OwnerRef);
         if (PaperSpriteInterace) OwnerPaperSpriteComponent = PaperSpriteInterace->GetPaperSpriteComponent();

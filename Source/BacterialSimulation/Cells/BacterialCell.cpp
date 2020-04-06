@@ -70,7 +70,7 @@ class UEnergyComponent* ABacterialCell::GetEnergyComponent()
 	return EnergyComponent;
 }
 
-class UGenomeComponent* ABacterialCell::GetGenomeComponent() 
+class UGenomeComponent* ABacterialCell::GetGenomeComponent_Implementation() 
 {
 	return GenomeComponent;
 }
