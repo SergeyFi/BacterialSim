@@ -4,6 +4,8 @@
 #include "BacterialCell.h"
 
 #include "PaperSpriteComponent.h"
+#include "Components/StaticMeshComponent.h"
+
 #include "BacterialSimulation/Components/EnergyComponent.h"
 #include "BacterialSimulation/Components/HealthComponent.h"
 #include "BacterialSimulation/Components/GenomeComponent.h"
@@ -11,6 +13,7 @@
 #include "BacterialSimulation/Components/NutrientsComponent.h"
 
 #include "BacterialSimulation/Environment/Environment.h"
+
 
 #include "Engine/World.h"
 
@@ -20,9 +23,12 @@ ABacterialCell::ABacterialCell()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
-	PaperSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSprite"));
-	PaperSprite->SetWorldScale3D(FVector(0.1f));
-	RootComponent = PaperSprite;
+	//PaperSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSprite"));
+	//PaperSprite->SetWorldScale3D(FVector(0.1f));
+	//RootComponent = PaperSprite;
+
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
+	RootComponent = StaticMesh;
 
 	EnergyComponent = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
 

@@ -35,6 +35,9 @@ protected:
 	class UPaperSpriteComponent* PaperSprite;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	class UStaticMeshComponent* StaticMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	class UEnergyComponent* EnergyComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
