@@ -5,6 +5,7 @@
 #include "Components/InputComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "GameFramework/PlayerController.h"
 
 // Sets default values
 AObserver::AObserver()
@@ -24,7 +25,7 @@ AObserver::AObserver()
 void AObserver::BeginPlay()
 {
 	Super::BeginPlay();
-	
+		
 }
 
 // Called to bind functionality to input
@@ -37,6 +38,8 @@ void AObserver::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("MoveRight", this, &AObserver::MoveRight);
 
 	PlayerInputComponent->BindAxis("MoveUp", this, &AObserver::MoveUp);
+
+	PlayerInputComponent->BindAction("ClickLeft", IE_Pressed, this, &AObserver::ClickLeftMB);
 
 }
 
@@ -53,5 +56,22 @@ void AObserver::MoveRight(float Value)
 void AObserver::MoveUp(float Value) 
 {
 	AddMovementInput(GetActorForwardVector(), Value);
+}
+
+void AObserver::ClickLeftMB() 
+{
+	auto PlayerController = GetController<APlayerController>();
+
+	if (PlayerController)
+	{
+		FHitResult HitResult;
+
+		bool bIsHit = PlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_WorldDynamic, false, HitResult);
+
+		if (bIsHit)
+		{
+			OnActorClicked.Broadcast(HitResult.GetActor());
+		}
+	}
 }
 

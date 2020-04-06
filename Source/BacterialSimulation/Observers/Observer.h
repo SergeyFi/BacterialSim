@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "Observer.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FClickDelegate, AActor*, Actor);
+
 UCLASS()
 class BACTERIALSIMULATION_API AObserver : public APawn
 {
@@ -31,9 +33,14 @@ protected:
 
 	void MoveUp(float Value);
 
+	void ClickLeftMB();
+
 public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UPROPERTY(BlueprintAssignable)
+	FClickDelegate OnActorClicked;
 
 };
