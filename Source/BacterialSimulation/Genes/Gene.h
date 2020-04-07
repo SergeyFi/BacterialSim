@@ -33,6 +33,9 @@ private:
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
+	FText GeneName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
 	int32 GeneLength;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene")
