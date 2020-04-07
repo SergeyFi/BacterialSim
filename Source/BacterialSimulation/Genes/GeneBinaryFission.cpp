@@ -176,10 +176,10 @@ void UGeneBinaryFission::TransferResourcesToInheritor(AActor* Inheritor)
 {
     if (Inheritor)
     {
-        auto EnergyComponentInterface = Cast<IEnergyComponentInterface>(Inheritor);
+        auto InheritorEnergyComponentInterface = Cast<IEnergyComponentInterface>(Inheritor);
         UEnergyComponent* InheritorEnergyComponent = nullptr;
         
-        if (EnergyComponentInterface) InheritorEnergyComponent = EnergyComponentInterface->GetEnergyComponent();
+        if (InheritorEnergyComponentInterface) InheritorEnergyComponent = InheritorEnergyComponentInterface->GetEnergyComponent_Implementation();
 
         if (InheritorEnergyComponent && OwnerEnergyComponent)
         {
@@ -190,7 +190,7 @@ void UGeneBinaryFission::TransferResourcesToInheritor(AActor* Inheritor)
         auto HealthComponentInterface = Cast<IHealthComponentInterface>(Inheritor);
         UHealthComponent* InheritorHealthComponent = nullptr;
         
-        if (HealthComponentInterface) InheritorHealthComponent = HealthComponentInterface->GetHealthComponent();
+        if (HealthComponentInterface) InheritorHealthComponent = HealthComponentInterface->GetHealthComponent_Implementation();
 
         if (InheritorHealthComponent && OwnerHealthComponent)
         {

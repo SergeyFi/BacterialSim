@@ -24,7 +24,7 @@ USizeComponent::USizeComponent()
 
 		if (HealthComponentIterface)
 		{
-			HealthComponentIterface->GetHealthComponent_Implementation()->OnHealthChanged.AddDynamic(this, &USizeComponent::SizeDependOnHealth);
+			//HealthComponentIterface->GetHealthComponent_Implementation()->OnHealthChanged.AddDynamic(this, &USizeComponent::SizeDependOnHealth);
 		}
 	}
 }
@@ -42,7 +42,7 @@ void USizeComponent::SizeDependOnHealth(float HealthCurrent, float HealthMax)
 
 	if (Ratio > 0.2f)
 	{
-		//SetOwnerSize(GetOwnerSize() * Ratio);
+		//SetScale(GetScale() * Ratio);
 	}
 }
 

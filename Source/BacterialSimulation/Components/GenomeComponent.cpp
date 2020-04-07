@@ -129,7 +129,7 @@ void UGenomeComponent::TransferGenesToInheritor(AActor* Inheritor)
 		auto InheritorGeneComponentInterface = Cast<IGenomeComponentInterface>(Inheritor);
 		if (InheritorGeneComponentInterface)
 		{
-			UGenomeComponent* InheritorGenomeComponent = InheritorGeneComponentInterface->GetGenomeComponent();
+			UGenomeComponent* InheritorGenomeComponent = InheritorGeneComponentInterface->GetGenomeComponent_Implementation();
 			if (InheritorGenomeComponent)
 			{
 				for (auto Gene : Genome)
