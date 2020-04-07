@@ -23,6 +23,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Size component")
 	float InitialSize;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Size component")
+	float MaxScale;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Size component")
+	float MinScale;
+
 	UFUNCTION()
 	void SizeDependOnHealth(float HealthCurrent, float HealthMax);
 
@@ -34,5 +40,5 @@ public:
 
 	float GetSize();
 
-	void ShiftOwnerSize(float SizeShift);
+	void ScaleShift(float SizeShift);
 };

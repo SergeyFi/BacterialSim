@@ -15,6 +15,8 @@ USizeComponent::USizeComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 
 	InitialSize = 1.0f;
+	MaxScale = 2.0f;
+	MinScale = 0.5;
 
 	SetScale(InitialSize);
 
@@ -50,7 +52,7 @@ void USizeComponent::SetScale(float Size)
 {
 	if (GetOwner())
 	{
-		GetOwner()->SetActorScale3D(FVector(Size/10.0f));
+		GetOwner()->SetActorScale3D(FVector(Size));
 	}
 }
 
@@ -58,7 +60,7 @@ float USizeComponent::GetScale()
 {
 	if (GetOwner())
 	{
-		return GetOwner()->GetActorScale3D().X*10.0f;
+		return GetOwner()->GetActorScale3D().X;
 	}
 
 	return 0.0f;
@@ -75,11 +77,11 @@ float USizeComponent::GetSize()
 	return 0.0f;
 }
 
-void USizeComponent::ShiftOwnerSize(float SizeShift) 
+void USizeComponent::ScaleShift(float SizeShift) 
 {
 	if (GetOwner())
 	{
-		SetScale(GetScale() - SizeShift);
+		SetScale(FMath::Clamp(GetScale() - SizeShift, MinScale, MaxScale));
 	}
 }
 

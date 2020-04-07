@@ -9,13 +9,13 @@
 UGeneSize::UGeneSize() 
 {
     bCanBeDeactivated = false;
-    SizeRange = 0.1;
+    SizeRange = 0.1f;
 }
 
 void UGeneSize::Mutate_Implementation() 
 {
     if (OwnerSizeComponent)
     {
-        OwnerSizeComponent->ShiftOwnerSize(FMath::RandRange(-SizeRange, SizeRange));
+        OwnerSizeComponent->ScaleShift(FMath::RandRange(-SizeRange, SizeRange));
     }
 }
