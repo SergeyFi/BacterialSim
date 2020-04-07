@@ -95,8 +95,10 @@ public:
 
 	void Init(class AActor* OwnerRef);
 
+	UFUNCTION(BlueprintCallable)
 	void ActivateGene();
 
+	UFUNCTION(BlueprintCallable)
 	void DeactivateGene();
 
 	bool IsActive();
