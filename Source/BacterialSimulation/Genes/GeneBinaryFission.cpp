@@ -13,6 +13,9 @@
 #include "BacterialSimulation/Interfaces/HealthComponentInterface.h"
 #include "BacterialSimulation/Interfaces/GenerationInterface.h"
 
+#include "Engine/World.h"
+#include "TimerManager.h"
+
 //#include "DrawDebugHelpers.h"
 
 #include "GameFramework/Actor.h"
@@ -44,7 +47,7 @@ void UGeneBinaryFission::ConditionCheck()
 
     if (EnergyCurrent >= MinimumEnergyToFission && HealthCurrent >= MinimumHealthToFission)
     {
-        BinaryFission();
+        StartTimerBinaryFission();
     }
 }
 
@@ -197,5 +200,15 @@ void UGeneBinaryFission::TransferResourcesToInheritor(AActor* Inheritor)
             InheritorHealthComponent->ResetHealth();
             InheritorHealthComponent->AddHealth(HealthWasteOnFission);
         }
+    }
+}
+
+void UGeneBinaryFission::StartTimerBinaryFission() 
+{
+    UWorld* World = GetWorld();
+    
+    if (World)
+    {
+        World->GetTimerManager().SetTimer(TimerFission, this, &UGeneBinaryFission::BinaryFission, FMath::RandRange(0.0f, 10.0f), false);
     }
 }

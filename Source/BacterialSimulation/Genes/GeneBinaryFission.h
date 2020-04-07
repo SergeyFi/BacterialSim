@@ -33,6 +33,10 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gene|BinaryFission")
 	float HealthWasteOnFission;
 
+	FTimerHandle TimerFission;
+
+	void StartTimerBinaryFission();
+
 	virtual void GeneCicle() override;
 
 	void ConditionCheck();
